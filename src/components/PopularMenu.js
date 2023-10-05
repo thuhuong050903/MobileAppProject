@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, FlatList} from 'react-native'
 import React from 'react'
 import { Image } from 'react-native';
-import popularMenu from '../data/db'
+import Data from '../data/db'
 
 export default function PopularMenu() {
     const renderItem = ({ item }) => (
@@ -15,14 +15,13 @@ export default function PopularMenu() {
   return (
     <View style={styles.containerPopularMenu}>
       <Text style={styles.titlePopular}>Popular Menu</Text>
-        <FlatList     data={popularMenu}
+        <FlatList  data={Data[1]}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}>
-        
         </FlatList>
 
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({

@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import PopularMenu from '../components/PopularMenu'
-export default function Home() {
+
+export default function Profile() {
   return (
     <View>
-        <PopularMenu/>
+      <Text>Profile</Text>
     </View>
   )
 }

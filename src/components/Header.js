@@ -1,4 +1,4 @@
-import Icon from 'react-native-vector-icons/FontAwesome';
+// import Icon from 'react-native-vector-icons/FontAwesome';
 import React from 'react';
 import { StyleSheet, View, Text} from 'react-native';
 
@@ -6,7 +6,7 @@ const Header = () => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Find Your Favorite Food </Text>
-            <Icon style={styles.icon} name="bell" size={25} color={'#6B50F6'}  />
+            {/* <Icon style={styles.icon} name="bell" size={25} color={'#6B50F6'}  /> */}
         </View>
     );
 }

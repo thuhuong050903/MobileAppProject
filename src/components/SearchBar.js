@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet, Image } from "react-native";
-import Icon from 'react-native-vector-icons/FontAwesome';
+// import Icon from 'react-native-vector-icons/FontAwesome';
 
 const SearchBar = () => {
     return (
         <View style={styles.container}>
             <View style={styles.search}>
-                <Icon style={styles.icon} name="search" size={25} color={'#6B50F6'} />
+                {/* <Icon style={styles.icon} name="search" size={25} color={'#6B50F6'} /> */}
                 <Text style={styles.title}>What do you want to order?</Text>
             </View>
             <View style={styles.btn}>

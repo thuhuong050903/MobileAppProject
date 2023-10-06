@@ -5,6 +5,7 @@ import SearchBar from '../components/SearchBar';
 import NearestRestaurant from '../components/NearestRestaurant';
 
 export default function Home() {
+  
   return (
     <ImageBackground source={require('../assets/Pattern.png')} style={{flex: 1}}>
       <Header/>

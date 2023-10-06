@@ -18,14 +18,14 @@ const styles = StyleSheet.create({
         marginTop: 60,
         marginLeft: 0,
         flexDirection: "row",
-        flex: 1,
+        flex: 0.3,
         gap:15
     },
 
     title: {
         color: "#22242E",
         fontSize: 31,
-        marginLeft: -15,
+        // marginLeft: -15,
         width: 250,
     },
 

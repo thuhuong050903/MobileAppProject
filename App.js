@@ -7,7 +7,6 @@ import Navigation from './src/navigator/Navigation';
 
 export default function App() {
   return (
-
       <Navigation/>
   );
 }

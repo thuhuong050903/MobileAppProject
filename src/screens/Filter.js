@@ -1,6 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import BtnFilter from './BtnFilter';
+import BtnFilter from '../components/BtnFilter';
+import BtnLarge from '../components/BtnLarge';
+import Header from '../components/Header';
+import SearchBar from '../components/SearchBar';
+
 
 export default function Filter() {
   const filterData = [
@@ -9,8 +13,13 @@ export default function Filter() {
     { title: 'Food', options: ['Cake', 'Soup', 'Main Course', 'Appetizer', 'Dessert'] },
   ];
 
+  const handleSearch = () => (
+    console.log("hiihi")
+  )
   return (
     <View style={styles.filterContainer}>
+      <Header/>
+      <SearchBar/>
       {filterData.map((filterGroup, index) => (
         <View key={index}>
           <Text style={styles.title}>{filterGroup.title}</Text>
@@ -21,6 +30,7 @@ export default function Filter() {
           </View>
         </View>
       ))}
+      <BtnLarge onPress={handleSearch} title={"Search"}/>
     </View>
   );
 }
@@ -42,5 +52,6 @@ const styles = StyleSheet.create({
   },
   filterContainer: {
     marginTop: 10,
+    flex: 1
   },
 });

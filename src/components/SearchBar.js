@@ -1,12 +1,21 @@
-import { View, Text, StyleSheet, Image } from "react-native";
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { View, Text, StyleSheet, Image, TextInput } from "react-native";
+import React, { useState } from 'react';
 
 const SearchBar = () => {
+    const [inputText, setInputText] = useState('');
     return (
         <View style={styles.container}>
             <View style={styles.search}>
-                <Icon style={styles.icon} name="search" size={25} color={'#6B50F6'} />
-                <Text style={styles.title}>What do you want to order?</Text>
+                <Image
+                    source={require('../assets/IconSearch.png')}
+                    style={styles.icon}
+                />
+                <TextInput
+                    style={styles.title} // Đặt kiểu cho TextInput
+                    placeholder="What do you want to order?" // Dòng hướng dẫn
+                    value={inputText} // Giá trị nhập văn bản (cần định nghĩa inputText trong state)
+                    onChangeText={text => setInputText(text)} // Xử lý sự kiện thay đổi giá trị
+                />
             </View>
             <View style={styles.btn}>
                 <Image
@@ -22,9 +31,10 @@ export default SearchBar;
 
 const styles = StyleSheet.create({
     container: {
-        bottom: 450,
-        flex: 4,
-        gap: 10,
+        marginTop: 20,
+        marginLeft: 10,
+        flex: 1,
+        gap: 25,
         maxHeight: 60,
         flexDirection: "row",
     },
@@ -32,10 +42,10 @@ const styles = StyleSheet.create({
     search: {
         borderRadius: 15,
         backgroundColor: "#999",
-        width: 240,
-        gap: 10,
+        minWidth: 255,
+        gap: 8,
         flexDirection: "row",
-        opacity: 0.6 ,
+        opacity: 0.6,
     },
 
     btn: {

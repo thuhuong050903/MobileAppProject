@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import {
     StyleSheet,
@@ -10,12 +10,16 @@ import {
     ScrollView,
     StatusBar,
     Dimensions,
+    FlatList
   } from 'react-native';
 import Data from '../data/db';
-import { FlatList } from 'react-native';
+import PopularMenu from './PopularMenu';
 
 export default function NearestRestaurant() {
     const data = Data;
+    const [showAllRestaurant, setShowAllRestaurant] = useState(false);
+    const [showAllMenu, setShowAllMenu] = useState(false);
+
     const Item = ({data}) => (
         <View style={styles.itemShow}>
             <Image style={styles.imageItem} source={data.image} />
@@ -38,17 +42,23 @@ export default function NearestRestaurant() {
                 </ImageBackground>
                 <View style={styles.titleRestaurant}>
                     <Text style={styles.titleName}>Nearest Restaurant</Text>
-                    <Text style={styles.viewMore}>View more</Text>
+                    <TouchableOpacity onPress={() => setShowAllRestaurant(!showAllRestaurant)}>
+                        {showAllRestaurant ? 
+                            <Text style={styles.viewMore} >Hide less</Text>:
+                            <Text style={styles.viewMore} >View more</Text>
+                        }
+                    </TouchableOpacity>
                 </View>          
                 <View style={styles.FlatList}>
                     <FlatList
-                        data={data}
+                        data={showAllRestaurant ? data : data.slice(0, 2)} 
                         renderItem={({item}) => <Item data={item}/>}
                         keyExtractor={item => item.id}
                         numColumns={2}
                         contentContainerStyle={styles.item}
                     />
                 </View>
+                <PopularMenu /> 
             </ScrollView>
         </SafeAreaView>
     );
@@ -58,21 +68,21 @@ const styles = StyleSheet.create({
     
     ViewContent: {
         flex: 1,
-        backgroundColor: 'lightgray',
+        // backgroundColor: 'lightgray',
         paddingTop: StatusBar.currentHeight,
     },
     scrollView: {
-        marginHorizontal: 20,
-        width: "100%",
+        marginHorizontal: 10,
     },
     image: {
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        width: '100%',
+        width: '96%',
         height: 200,
         objectFit: 'cover',
+        marginLeft: 20,
     },
     titleAd: {
         color: '#fff',

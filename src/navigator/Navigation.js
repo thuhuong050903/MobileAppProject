@@ -48,8 +48,6 @@ export default function Navigation() {
             )
         }} />
         </Tab.Navigator>
-        
-        
     </NavigationContainer>
   )
 }

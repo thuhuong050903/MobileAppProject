@@ -21,14 +21,14 @@ const styles = StyleSheet.create({
     container: {
         marginTop: 60,
         flexDirection: "row",
-        marginLeft: 10,
+        marginLeft: 25,
         gap: 38
     },
 
     title: {
         color: "#22242E",
         fontSize: 31,
-        width: 250,
+        width: '60%',
     },
 
     icon: {
@@ -38,9 +38,9 @@ const styles = StyleSheet.create({
     },
     iconContainer: {
         backgroundColor: 'white',
-        padding: 10,
-        height: 40,
+        padding: 15,
         borderRadius: 10,
+        marginLeft: '10%',
         alignSelf: 'center'
     }
 

@@ -36,7 +36,7 @@ export default function PopularMenu() {
         keyExtractor={(item) => item.id.toString()}>
       </FlatList>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({

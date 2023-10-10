@@ -16,13 +16,14 @@ const SearchBar = () => {
                     value={inputText} // Giá trị nhập văn bản (cần định nghĩa inputText trong state)
                     onChangeText={text => setInputText(text)} // Xử lý sự kiện thay đổi giá trị
                 />
+
             </View>
-            <View style={styles.btn}>
+            <TouchableOpacity style={styles.btn} onPress={handleFilterPress}>
                 <Image
-                    source={require('../assets/Filter.png')} 
+                    source={require('../assets/icons/Filter.png')} 
                     style={styles.icon} 
                 />
-            </View>
+            </TouchableOpacity>
         </View>
     );
 }

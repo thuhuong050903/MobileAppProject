@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 
@@ -8,6 +9,7 @@ const Header = () => {
             <View style={styles.iconContainer}>
                 <Image style={styles.icon} source={require('../assets/Vector.png')} />
             </View>
+
         </View>
 
     );

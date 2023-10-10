@@ -1,19 +1,24 @@
-import { View, Text, StyleSheet, Image } from "react-native";
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { useNavigation } from '@react-navigation/native';
 
 const SearchBar = () => {
+    const navigation = useNavigation();
+
+  const handleFilterPress = () => {
+    navigation.navigate('Filter');
+  };
+
     return (
         <View style={styles.container}>
             <View style={styles.search}>
-                <Icon style={styles.icon} name="search" size={25} color={'#6B50F6'} />
                 <Text style={styles.title}>What do you want to order?</Text>
             </View>
-            <View style={styles.btn}>
+            <TouchableOpacity style={styles.btn} onPress={handleFilterPress}>
                 <Image
-                    source={require('../assets/Filter.png')} 
+                    source={require('../assets/icons/Filter.png')} 
                     style={styles.icon} 
                 />
-            </View>
+            </TouchableOpacity>
         </View>
     );
 }
@@ -22,7 +27,6 @@ export default SearchBar;
 
 const styles = StyleSheet.create({
     container: {
-        bottom: 450,
         flex: 4,
         gap: 10,
         maxHeight: 60,

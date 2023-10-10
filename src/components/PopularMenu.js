@@ -56,8 +56,6 @@ const styles = StyleSheet.create({
   ItemContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    marginLeft: 20,
-    marginRight: 10,
     marginBottom: 15,
     backgroundColor: '#fff',
     padding: 10,
@@ -66,8 +64,8 @@ const styles = StyleSheet.create({
   content: {
     alignItems: 'left',
     justifyContent: 'center',
-    marginLeft: 25,
-    width: '67%',
+    marginLeft: 15,
+    width: '60%',
   },
   name: {
     fontSize: 16,

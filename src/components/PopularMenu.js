@@ -1,9 +1,24 @@
 import { StyleSheet, Text, View, FlatList} from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Image, TouchableOpacity, } from 'react-native';
-import DataMenu from '../data/dbMenu';
+// import DataMenu from '../data/dbMenu';
 
 export default function PopularMenu() {
+  const [DataMenu, setDataMenu] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://6471cfab6a9370d5a41ab469.mockapi.io/menu',{method: "GET"});
+        const data = await response.json();
+        setDataMenu(data);
+      }
+      catch{
+        console.error('Error');
+      }
+    }
+    fetchData();
+  }, [])
 
   const [showAllMenu, setShowAllMenu] = useState(true);
   const renderItem = ({ item }) => (

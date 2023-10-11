@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import {
     StyleSheet,
@@ -12,11 +12,26 @@ import {
     Dimensions,
     FlatList
 } from 'react-native';
-import Data from '../data/db';
 import PopularMenu from './PopularMenu';
 
 export default function NearestRestaurant() {
-    const data = Data;
+    // const data = Data;
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try{
+                const respone = await fetch('https://6471cfab6a9370d5a41ab469.mockapi.io/restaurant', {method: "GET"});
+                const data = await respone.json();
+                setData(data);
+            }
+            catch{
+                console.error('Error');
+            }
+        }
+        fetchData();
+    }, [])
+
     const [showAllRestaurant, setShowAllRestaurant] = useState(false);
 
     const Item = ({ data }) => (

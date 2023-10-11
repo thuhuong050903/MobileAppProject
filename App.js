@@ -9,10 +9,10 @@ export default function App() {
   
   return (
     <NavigationContainer>
-    <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="MainStack" component={Navigation} />
-      <Stack.Screen name="Filter" component={Filter} />
-    </Stack.Navigator>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name="MainStack" component={Navigation} />
+        <Stack.Screen name="Filter" component={Filter} />
+      </Stack.Navigator>
   </NavigationContainer>
       
   );

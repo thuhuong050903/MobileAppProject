@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   titleRestaurant: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    margin: 20,
+    marginVertical: 20,
   },
   titleName: {
     fontWeight: 'bold',

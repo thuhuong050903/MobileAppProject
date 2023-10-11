@@ -1,7 +1,16 @@
 import { View, Text, StyleSheet, Image, TextInput } from "react-native";
 import React, { useState } from 'react';
+import { TouchableOpacity } from "react-native";
+import { useNavigation } from '@react-navigation/native';
+
 
 const SearchBar = () => {
+    const navigation = useNavigation();
+
+    const handleFilterPress = () => {
+        navigation.navigate('Filter');
+      };
+    
     const [inputText, setInputText] = useState('');
     return (
         <View style={styles.container}>
@@ -11,10 +20,10 @@ const SearchBar = () => {
                     style={styles.icon}
                 />
                 <TextInput
-                    style={styles.title} // Đặt kiểu cho TextInput
-                    placeholder="What do you want to order?" // Dòng hướng dẫn
-                    value={inputText} // Giá trị nhập văn bản (cần định nghĩa inputText trong state)
-                    onChangeText={text => setInputText(text)} // Xử lý sự kiện thay đổi giá trị
+                    style={styles.title} 
+                    placeholder="What do you want to order?" 
+                    value={inputText}
+                    onChangeText={text => setInputText(text)} 
                 />
 
             </View>
@@ -33,40 +42,40 @@ export default SearchBar;
 const styles = StyleSheet.create({
     container: {
         marginTop: 20,
-        marginLeft: 10,
+        marginHorizontal: 25,
         flex: 1,
-        gap: 25,
+        gap: 10,
         maxHeight: 60,
         flexDirection: "row",
     },
 
     search: {
         borderRadius: 15,
-        backgroundColor: "#999",
-        minWidth: 255,
-        gap: 8,
+        backgroundColor: "#EAE6F9",
+        width: '80%',
         flexDirection: "row",
-        opacity: 0.6,
     },
 
     btn: {
-        backgroundColor: "#999",
-        width: 60,
+        backgroundColor: "#EAE6F9",
+        width: '17%',
         borderRadius: 15,
-        opacity: 0.6,
     },
 
     title: {
         maxHeight: 60,
-        padding: 20,
-        fontSize: 12,
+        paddingVertical: 20,
+        fontSize: 13,
         color: "#6B50F6",
+        opacity: 0.6,
+
     },
 
     icon: {
-        opacity: 1.0 ,
-        left: 18,
-        top: 18
+        opacity: 1.0,
+        alignSelf: 'center',
+        marginVertical: 15,
+        marginHorizontal: 20
     }
 
 });

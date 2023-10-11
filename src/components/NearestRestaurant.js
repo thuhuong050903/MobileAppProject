@@ -18,7 +18,6 @@ import PopularMenu from './PopularMenu';
 export default function NearestRestaurant() {
     const data = Data;
     const [showAllRestaurant, setShowAllRestaurant] = useState(false);
-    const [showAllMenu, setShowAllMenu] = useState(false);
 
     const Item = ({ data }) => (
         <View style={styles.itemShow}>
@@ -30,17 +29,18 @@ export default function NearestRestaurant() {
 
     return (
         <SafeAreaView style={styles.ViewContent}>
-            <ScrollView style={styles.scrollView}>
-                <ImageBackground source={require('../assets/Promo-Advertising.png')} resizeMode="cover" style={styles.image}>
-                    <View style={{ flex: 1 }}></View>
-                    <View style={{ flex: 1, marginLeft: 30 }}>
-                        <Text style={styles.titleAd}>Special Deal for October</Text>
-                        <TouchableOpacity style={styles.button}>
-                            <Text>Buy now</Text>
-                        </TouchableOpacity>
-                    </View>
-                </ImageBackground>
-                <View style={styles.titleRestaurant}>
+            <View style={styles.imageContainer}>
+                <Image
+                    source={require('../assets/Promo-Advertising.png')}
+                    resizeMode="cover"
+                    style={[styles.image, { borderRadius: 15 }]}
+                    />
+                    <Text style={styles.titleAd}>Special Deal for October</Text>
+                    <TouchableOpacity style={styles.button}>
+                        <Text style={styles.textBtn}>Buy now</Text>
+                    </TouchableOpacity>
+            </View>
+            <View style={styles.titleRestaurant}>
                     <Text style={styles.titleName}>Nearest Restaurant</Text>
                     <TouchableOpacity onPress={() => setShowAllRestaurant(!showAllRestaurant)}>
                         {showAllRestaurant ?
@@ -48,18 +48,17 @@ export default function NearestRestaurant() {
                             <Text style={styles.viewMore} >View more</Text>
                         }
                     </TouchableOpacity>
-                </View>
-                <View style={styles.FlatList}>
-                    <FlatList
-                        data={showAllRestaurant ? data : data.slice(0, 2)}
-                        renderItem={({ item }) => <Item data={item} />}
-                        keyExtractor={item => item.id}
-                        numColumns={2}
-                        contentContainerStyle={styles.item}
-                    />
-                </View>
-                <PopularMenu />
-            </ScrollView>
+            </View>
+            <View style={styles.FlatList}>
+                <FlatList
+                    data={showAllRestaurant ? data : data.slice(0, 2)}
+                    renderItem={({ item }) => <Item data={item} />}
+                    keyExtractor={item => item.id}
+                    numColumns={2}
+                    contentContainerStyle={styles.item}
+                />
+            </View>
+            <PopularMenu />
         </SafeAreaView>
     );
 }
@@ -68,37 +67,51 @@ const styles = StyleSheet.create({
 
     ViewContent: {
         flex: 1,
-        // backgroundColor: 'lightgray',
+        marginHorizontal: 25,
         paddingTop: StatusBar.currentHeight,
     },
-    scrollView: {
-        marginHorizontal: 10,
-    },
+    
     image: {
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
         height: 200,
+        width: '100%'
+    },
+    imageContainer: {
+        flex: 1, 
     },
     titleAd: {
         color: '#fff',
-        fontSize: 24,
+        fontSize: 17,
         textAlign: 'left',
         fontWeight: 'bold',
+        width: '50%',
+        position: 'absolute',
+        top: '20%',
+        left: "55%"
     },
     button: {
         marginTop: 10,
         backgroundColor: '#fff',
-        padding: 15,
-        width: 130,
+        paddingVertical: 10,
+        paddingHorizontal: 19,
         alignItems: 'center',
-        borderRadius: 20,
+        borderRadius: 6,
+        position: 'absolute',
+        top: '45%',
+        left: "55%"
+    },
+    textBtn:{
+        fontSize: 14,
+        color: '#6B50F6',
+        alignSelf: 'center'
     },
     titleRestaurant: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        margin: 20,
+        marginVertical: 20,
     },
     name: {
         textAlign: "center",
@@ -109,9 +122,9 @@ const styles = StyleSheet.create({
         marginBottom: 5,
     },
     imageItem: {
-        width: 100,
-        height: 100,
-        objectFit: 'cover',
+        width: 96,
+        height: 73,
+        marginBottom: 10
     },
     titleName: {
         fontWeight: 'bold',
@@ -136,8 +149,10 @@ const styles = StyleSheet.create({
         margin: 10,
         backgroundColor: '#fff',
         height: 'auto',
+        alignSelf: 'center',
         alignItems: 'center',
-        padding: 10,
+        padding: 15,
+        width: '45%',
         borderRadius: 15,
         marginBottom: 10,
     },

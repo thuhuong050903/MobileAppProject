@@ -15,7 +15,6 @@ import {
 import PopularMenu from './PopularMenu';
 
 export default function NearestRestaurant() {
-    // const data = Data;
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -34,9 +33,9 @@ export default function NearestRestaurant() {
 
     const [showAllRestaurant, setShowAllRestaurant] = useState(false);
 
-    const Item = ({ data }) => (
+    const Item = ({data}) =>  (
         <View style={styles.itemShow}>
-            <Image style={styles.imageItem} source={data.image} />
+            <Image style={styles.imageItem} source={{uri: data.image}} />
             <Text style={styles.name}>{data.name}</Text>
             <Text style={styles.minutes}>{data.minutes} minutes</Text>
         </View>

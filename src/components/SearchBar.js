@@ -78,13 +78,13 @@ const SearchBar = () => {
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => (
                     <View style={styles.ItemContainer}>
-                        <Image style={styles.image} source={item.image} />
+                        <Image style={styles.image} source={{uri: item.image}} />
                         <View style={styles.content}>
                             <Text style={styles.name}>{item.name}</Text>
                             <Text style={styles.subname}>{item.subname}</Text>
                         </View>
                         <View style={{ justifyContent: 'center' }}>
-                            <Text style={styles.price}>{item.price}</Text>
+                            <Text style={styles.price}>${item.price}</Text>
                         </View>
                     </View>
                 )}
@@ -126,12 +126,25 @@ const styles = StyleSheet.create({
         opacity: 0.6,
 
     },
-
     icon: {
         opacity: 1.0,
         alignSelf: 'center',
         marginVertical: 15,
         marginHorizontal: 20
+    },
+    show: {
+        marginLeft: 30,
+        marginRight: 30,
+        marginTop: 20,
+        borderRadius: 20,
+        backgroundColor: 'white',
+    },
+    ItemContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: 'gray',
     },
 
     image: {

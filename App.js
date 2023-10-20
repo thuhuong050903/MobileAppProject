@@ -3,16 +3,18 @@ import Navigation from './src/navigator/Navigation';
 import { createStackNavigator } from '@react-navigation/stack';
 import Filter from './src/screens/Filter';
 import { NavigationContainer } from '@react-navigation/native';
+import Chatmessage from './src/components/Chatmessage'
 const Stack = createStackNavigator();
 
 export default function App() {
   
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{headerShown: false}}>
+      {/* <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="MainStack" component={Navigation} />
         <Stack.Screen name="Filter" component={Filter} />
-      </Stack.Navigator>
+      </Stack.Navigator> */}
+      <Chatmessage></Chatmessage>
   </NavigationContainer>
       
   );

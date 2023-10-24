@@ -1,7 +1,12 @@
-import { StyleSheet, Text, View, ImageBackground, Image } from 'react-native'
+import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity} from 'react-native'
 import React from 'react'
-
+import { useNavigation } from '@react-navigation/native'
 export default function Message() {
+  const navigation = useNavigation();
+
+  const handleChat = () => (
+    navigation.navigate('ChatMessage')
+  );
   return (
     <ImageBackground source={require('../assets/Pattern.png')} style={{ flex: 1 }}>
       <View style={styles.container}>
@@ -11,7 +16,7 @@ export default function Message() {
         <Text style={styles.chat}>Chat</Text>
 
         <View style={styles.container_notification}>
-          <View style={styles.notification}>
+          <TouchableOpacity style={styles.notification} onPress={handleChat}>
             <View style={styles.protofile}>
               <Image style={styles.vector} source={require('../assets/Profile_Louis.png')}></Image>
             </View>
@@ -20,7 +25,7 @@ export default function Message() {
               <Text style={styles.status}>Your Order Just Arrived!</Text>
             </View>
             <Text style={styles.time}>20:00</Text>
-          </View>
+          </TouchableOpacity>
 
           <View style={styles.notification}>
             <View style={styles.protofile}>

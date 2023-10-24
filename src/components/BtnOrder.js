@@ -10,7 +10,7 @@ export default function BtnOrder() {
     )
   return (
     <TouchableOpacity onPress={handleOrder} style={styles.orderBtn}>
-        <Text>Place My Order</Text>
+        <Text style={styles.titleBtn}>Place My Order</Text>
     </TouchableOpacity>
   )
 }
@@ -18,6 +18,19 @@ export default function BtnOrder() {
 const styles = StyleSheet.create({
     orderBtn: {
         backgroundColor:'white',
+        borderRadius: 15,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-evenly',
+        alignItems:'center',
+        paddingVertical: 20,
+        marginTop: 20
+    },
+    titleBtn : {
+        color: '#6B50F6',
+        fontSize: 14,
+        fontWeight: '500',
         
+
     }
 })

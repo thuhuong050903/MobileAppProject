@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import DataMenu from '../data/dbMenu';
 import Swipeable from 'react-native-swipeable';
 
-export default function OrderCard() {
+export default function OrderCard({ onTotalChange, total }) {
   const [itemQuantities, setItemQuantities] = useState({});
   const [menuItems, setMenuItems] = useState(DataMenu);
+
   const decrementQuantity = (itemId) => {
     const currentQuantity = itemQuantities[itemId] || 1;
     const newQuantity = Math.max(1, currentQuantity - 1);
@@ -23,10 +24,25 @@ export default function OrderCard() {
     setMenuItems(updatedItems);
   };
 
+
+  const calculateTotal = () => {
+    let total = 0;
+    for (const item of menuItems) {
+      total += (item.price * (itemQuantities[item.id] || 1));
+    }
+    onTotalChange(total);
+
+    return total;
+  };
+  useEffect(() => {
+    const newTotal = calculateTotal();
+    onTotalChange(newTotal);
+  }, [itemQuantities, menuItems]);
+
   const renderItem = (item) => (
     <Swipeable
       rightButtons={[
-        <View
+        <TouchableOpacity
           style={{
             backgroundColor: '#6B50F6',
             width: 100,
@@ -44,7 +60,7 @@ export default function OrderCard() {
             style={{ tintColor: 'white' }}
             source={require('../assets/icons/iconDelete.png')}
           />
-        </View>,
+        </TouchableOpacity>,
       ]}
     >
       <View style={styles.cardContainer}>
@@ -70,8 +86,8 @@ export default function OrderCard() {
   );
 
   return (
-    <View>
-      {DataMenu.map((item) => renderItem(item))}
+    <View style={{flex: 8}}>
+      {menuItems.map((item) => renderItem(item))}
     </View>
   );
 }

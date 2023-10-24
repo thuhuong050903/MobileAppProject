@@ -1,30 +1,33 @@
 import { ImageBackground, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import BtnOrder from './BtnOrder';
-const rows = [
-  { label: 'Sub-total', price: '120 $' },
-  { label: 'Discount', price: '10 $' },
-  { label: 'Total', price: '110 $' },
-];
 
-export default function PriceCard() {
+export default function PriceCard({ subtotal, discount, delivery }) {
+  const total = subtotal - discount + delivery;
+  
   return (
     <View style={styles.detailContainer}>
-        <ImageBackground source={require('../assets/PriceInfo.png')} style={styles.img}>
-            <View >
-            {rows.map((row, index) => (
-                <View key={index} style={styles.row}>
-                <Text style={styles.label}>{row.label}</Text>
-                <Text style={styles.price}>{row.price}</Text>
-                </View>
-            ))}
-            </View>
-            <View style={styles.rowTotal}>
-            <Text style={styles.labelTotal}>Total</Text>
-            <Text style={styles.priceTotal}>150 $</Text>
-            </View>
-            <BtnOrder/>
-    </ImageBackground>
+      <ImageBackground source={require('../assets/PriceInfo.png')} style={styles.img}>
+        <View>
+          <View style={styles.row}>
+            <Text style={styles.label}>Sub-total</Text>
+            <Text style={styles.price}>{subtotal}$</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.label}>Discount</Text>
+            <Text style={styles.price}>{discount}$</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.label}>Delivery</Text>
+            <Text style={styles.price}>{delivery}$</Text>
+          </View>
+        </View>
+        <View style={styles.rowTotal}>
+          <Text style={styles.labelTotal}>Total</Text>
+          <Text style={styles.priceTotal}>{total}$</Text>
+        </View>
+        <BtnOrder />
+      </ImageBackground>
     </View>
   );
 }
@@ -33,7 +36,8 @@ const styles = StyleSheet.create({
   detailContainer: {
     display: 'flex',
     flexDirection: 'row',
-    marginTop: '15%'
+    marginTop: '15%',
+    flex: 6
   },
   img: {
     flex: 1,
@@ -48,26 +52,21 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     color: 'white'
-
   },
   price: {
     fontSize: 18,
     fontWeight: 'bold',
     color: 'white'
-
   },
   rowTotal: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    color: 'white'
-
   },
   labelTotal: {
     fontSize: 23,
     fontWeight: 'bold',
     color: 'white'
-
   },
   priceTotal: {
     fontSize: 23,

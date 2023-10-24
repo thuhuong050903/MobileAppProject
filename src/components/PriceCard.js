@@ -1,6 +1,6 @@
 import { ImageBackground, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-
+import BtnOrder from './BtnOrder';
 const rows = [
   { label: 'Sub-total', price: '120 $' },
   { label: 'Discount', price: '10 $' },
@@ -23,6 +23,7 @@ export default function PriceCard() {
             <Text style={styles.labelTotal}>Total</Text>
             <Text style={styles.priceTotal}>150 $</Text>
             </View>
+            <BtnOrder/>
     </ImageBackground>
     </View>
   );
@@ -30,12 +31,13 @@ export default function PriceCard() {
 
 const styles = StyleSheet.create({
   detailContainer: {
-    padding: 10,
-    backgroundColor: '##6B50F6',
+    display: 'flex',
+    flexDirection: 'row',
+    marginTop: '15%'
   },
   img: {
-    backgroundColor: '#6B50F6',
-    
+    flex: 1,
+    padding: '10%'
   },
   row: {
     flexDirection: 'row',

@@ -1,8 +1,13 @@
 import { FlatList, StyleSheet, Text, TouchableOpacity, View ,Image} from 'react-native'
 import React from 'react'
 import { useState } from 'react'
-
+import { useNavigation } from '@react-navigation/native'
 export default function PaymentCard() {
+    const navigation = useNavigation();
+
+    const handleBackBtn = () => (
+        navigation.navigate('ShoppingCard')
+    )
     const payment  = [
         {
             id: 1,
@@ -31,7 +36,9 @@ export default function PaymentCard() {
     )
   return (
     <View style={styles.container}>
+        <TouchableOpacity onPress={handleBackBtn}>
         <Image source={require('../assets/Group.png')}></Image>
+        </TouchableOpacity>
         <Text style={styles.title}>Payment</Text>
         <FlatList 
         data={payment} 
@@ -62,7 +69,7 @@ const styles = StyleSheet.create({
       }
       , 
     container: {    
-        marginHorizontal: '10%',
-        marginTop: '5%'
+        marginHorizontal: '5%',
+        marginTop: '10%'
     }
 })

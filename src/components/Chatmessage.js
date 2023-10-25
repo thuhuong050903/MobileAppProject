@@ -1,57 +1,67 @@
-import { StyleSheet, Text, View, ImageBackground, Image, TextInput } from 'react-native'
+import { StyleSheet, Text, View, ImageBackground, Image, TextInput, Dimensions, Platform } from 'react-native'
 import React from 'react'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
+const { height } = Dimensions.get('window');
 
 export default function Message() {
     return (
-        <ImageBackground source={require('../assets/bgChat.png')} style={{ flex: 1 }}>
-            <View style={styles.container}>
-                <View style={styles.icon}>
-                    <Image style={styles.vector} source={require('../assets/Back.png')} ></Image>
-                </View>
-                <Text style={styles.chat}>Chat</Text>
-
-                <View style={styles.container_notification}>
-                    <View style={styles.notification}>
-                        <View style={styles.protofile}>
-                            <Image style={styles.vector} source={require('../assets/Profile_Louis.png')}></Image>
-                        </View>
-
-                        <View style={styles.information}>
-                            <Text style={styles.name}>Louis Kelly</Text>
-                            <Text style={styles.status}>
-                            <Text style={styles.rectangle}></Text>Online</Text>
-                        </View>
-
-                    <Image style={styles.call} source={require('../assets/CallLogo.png')}></Image>
+        <KeyboardAwareScrollView
+            style={{ flex: 1 }}
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        >
+            <ImageBackground source={require('../assets/bgChat.png')} style={{ flex: 1 }}>
+                <View style={styles.container}>
+                    <View style={styles.icon}>
+                        <Image style={styles.vector} source={require('../assets/Back.png')} ></Image>
                     </View>
-                    
-                </View>
+                    <Text style={styles.chat}>Chat</Text>
 
-                <View style={styles.content}>
-                    <Text style={styles.user} >Just to order</Text>
-                    <Text style={styles.admin} >Okay, for what level of spiciness?</Text>
-                    <Text style={styles.user} >Okay, wait a minute 👍</Text>
-                    <Text style={styles.admin} >Okay I'm waiting  👍</Text>
-                </View>
+                    <View style={styles.container_notification}>
+                        <View style={styles.notification}>
+                            <View style={styles.protofile}>
+                                <Image style={styles.vector} source={require('../assets/Profile_Louis.png')}></Image>
+                            </View>
 
-                <View style={styles.form_text}>
-                    <TextInput
-                        style={styles.textInput}
-                        placeholder="Okay I'm waiting  👍"
-                    // Các thuộc tính khác của TextInput
-                    />
+                            <View style={styles.information}>
+                                <Text style={styles.name}>Louis Kelly</Text>
+                                <Text style={styles.status}>
+                                    <Text style={styles.rectangle}></Text>Online</Text>
+                            </View>
+
+                            <Image style={styles.call} source={require('../assets/CallLogo.png')}></Image>
+                        </View>
+
+                    </View>
+
+                    <View style={styles.content}>
+                        <Text style={styles.user} >Just to order</Text>
+                        <Text style={styles.admin} >Okay, for what level of spiciness?</Text>
+                        <Text style={styles.user} >Okay, wait a minute 👍</Text>
+                        <Text style={styles.admin} >Okay I'm waiting  👍</Text>
+                    </View>
+
+                    <View style={styles.form_text}>
+                        <TextInput
+                            style={styles.textInput}
+                            placeholder="Okay I'm waiting  👍"
+                        // Các thuộc tính khác của TextInput
+                        />
                         <Image style={styles.send} source={require('../assets/IconSend.png')}></Image>
+                    </View>
                 </View>
-            </View>    
-        </ImageBackground>
+            </ImageBackground>
+        </KeyboardAwareScrollView>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
+        height: height,
         margin: 20,
         color: "#22242E",
     },
+
     icon: {
         borderRadius: 15,
         marginLeft: 15,
@@ -84,11 +94,11 @@ const styles = StyleSheet.create({
         borderRadius: 22,
         gap: 20,
         flexDirection: "row",
-        justifyContent:"space-between"
+        justifyContent: "space-between"
     },
 
     information: {
-        right:40,
+        right: 40,
         gap: 8,
         justifyContent: "center",
     },
@@ -106,40 +116,41 @@ const styles = StyleSheet.create({
     },
 
     content: {
-     marginTop:10,
-     
-    } ,
+        marginTop: 10,
+        flex: 1,
+    },
     user: {
         alignSelf: "flex-start",
         marginTop: 20,
-        maxWidth:210,
+        maxWidth: 210,
         paddingTop: 12,
         paddingRight: 29,
         paddingBottom: 15,
         paddingLeft: 12,
         backgroundColor: "#F6F6F6",
         borderRadius: 13,
-        fontSize:14,
+        fontSize: 14,
     },
 
     admin: {
-        marginTop:20,
-        right:0,
+        marginTop: 20,
+        right: 0,
         alignSelf: "flex-end",
         maxWidth: 284,
         paddingTop: 12,
         paddingRight: 29,
         paddingBottom: 15,
         paddingLeft: 12,
-        color:"#fff",
+        color: "#fff",
         backgroundColor: "#6B50F6",
         borderRadius: 13,
-        fontSize: 14, 
+        fontSize: 14,
     },
 
     form_text: {
-        top:90,
-        justifyContent:"space-between",
+        bottom: 0,
+        width: '100%',
+        justifyContent: "space-between",
         paddingTop: 20,
         paddingRight: 29,
         paddingBottom: 20,

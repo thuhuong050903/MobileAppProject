@@ -46,8 +46,6 @@ const SearchBar = () => {
     const handleFilterPress = () => {
         navigation.navigate('Filter');
       };
-    
-    const [inputText, setInputText] = useState('');
 
     return (
         <View style={{flex: 1}}>
@@ -99,19 +97,16 @@ const styles = StyleSheet.create({
     container: {
         marginTop: 20,
         marginHorizontal: 25,
-        // flex: 1,
         gap: 10,
         maxHeight: 60,
         flexDirection: "row",
     },
-
     search: {
         borderRadius: 15,
         backgroundColor: "#EAE6F9",
         width: '80%',
         flexDirection: "row",
     },
-
     btn: {
         backgroundColor: "#EAE6F9",
         width: '17%',

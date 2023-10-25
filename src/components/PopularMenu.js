@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
     color: 'blue',
   },
   ItemContainer: {
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     marginBottom: 15,
@@ -94,4 +95,9 @@ const styles = StyleSheet.create({
     color: 'blue',
     fontWeight: 'bold',
   },
+  image: {
+    flex: 0.5,
+    aspectRatio: 1, 
+    resizeMode: 'cover', 
+  }
 })

@@ -1,31 +1,19 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
-import React from 'react'
-import BtnSmall from '../components/BtnSmall'
+import { createStackNavigator } from '@react-navigation/stack';
+import LoginForm from '../components/LoginForm';
+import Started from '../components/Started';
+import SignupForm from '../components/SignupForm';
+import FormInfo from '../components/FormInfo';
+
+const Stack = createStackNavigator();
 
 export default function Profile() {
   return (
-    <View>
-      <View style={styles.imgContainer}>
-        <Image style={styles.image} source={require('../assets/PhotoProfile.png')} />
-      </View>
-
-      <View>
-        <BtnSmall style={styles.btn} title={"Member Gold"}/>
-      </View>
-    </View>
-  )
+    <Stack.Navigator initialRouteName="Login"  screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Start" component={Started} />
+      <Stack.Screen name="Login" component={LoginForm} />
+      {/* <Stack.Screen name="Signup" component={SignupForm}/>
+      <Stack.Screen name="FormInfo" component={FormInfo}/> */}
+    </Stack.Navigator>
+  );
 }
 
-const styles = StyleSheet.create({
-  image: {
-    width: '100%',},
-
-  imgContainer: {
-    padding: 30,
-    backgroundColor: 'black'
-  
-  },
-  btn: {
-    marginRight: '50%'
-  }
-})

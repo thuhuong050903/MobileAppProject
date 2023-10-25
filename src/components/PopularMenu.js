@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
     color: 'blue',
   },
   ItemContainer: {
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
     marginBottom: 15,

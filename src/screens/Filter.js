@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, View, FlatList, Touchable, TouchableOpacity } from 'react-native';
 import BtnFilter from '../components/BtnFilter';
 import BtnLarge from '../components/BtnLarge';
 import Header from '../components/Header';
@@ -12,10 +12,34 @@ export default function Filter() {
     { title: 'Location', options: ['1 Km', '> 10 Km', '< 10 Km'] },
     { title: 'Food', options: ['Cake', 'Soup', 'Main Course', 'Appetizer', 'Dessert'] },
   ];
+  const [data, setData] = useState([]);
+  const [KeySearch, setKeySearch] = useState('');
+  const [results, setResults] = useState([]);
 
-  const handleSearch = () => (
-    console.log("hiihi")
-  )
+  useEffect(()=> {
+    const getData = async () => {
+      try {
+        const respone = await fetch('https://6410c403da042ca131fb737e.mockapi.io/Order',{method: 'GET'});
+        const data = await respone.json();
+        setData(data);
+      } catch  {
+        console.log('Error');
+      }
+    }
+    getData();
+  },[])
+
+  const updateKey = (text) => {
+    setKeySearch(text);
+    console.log(text);
+    fillData();
+  }
+  const fillData = () => {
+    const newData = data[0].KeySearch;
+    setResults(newData);
+    console.log(newData);
+  }
+  
   return (
     <View style={styles.filterContainer}>
       <Header/>
@@ -25,12 +49,26 @@ export default function Filter() {
           <Text style={styles.title}>{filterGroup.title}</Text>
           <View style={styles.groupBtn}>
             {filterGroup.options.map((option, optionIndex) => (
-              <BtnFilter key={optionIndex} title={option} />
+              // <BtnFilter onPress={() => updateKey(title)} key={optionIndex} title={option} />
+              <TouchableOpacity style={styles.btnFilter} onPress={() => updateKey(option)} key={optionIndex}>
+                <Text style= {styles.btnText}>{option}</Text>
+            </TouchableOpacity>
             ))}
           </View>
         </View>
       ))}
-      <BtnLarge onPress={handleSearch} title={"Search"}/>
+      <BtnLarge  title={"Search"}/>
+
+      <FlatList
+      data={results}
+      keyExtractor={(item) => item.id.toString()}
+      renderItem={({ item }) => (
+        <View style={styles.resultItem}>
+          <Text>{item.name}</Text>
+          <Text>jhijehfiber</Text>
+        </View>
+      )}
+    />
     </View>
   );
 }
@@ -54,4 +92,24 @@ const styles = StyleSheet.create({
     marginTop: 10,
     flex: 1
   },
+  resultItem: {
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: 'gray',
+  },
+  noResults: {
+    marginTop: 10,
+    textAlign: 'center',
+  },
+  btnFilter: {
+    backgroundColor: '#00FF661A',
+    width: 'auto',
+    paddingHorizontal: 20,
+    borderRadius: 15
+},
+btnText: {
+    color: '#6B50F6',
+    fontWeight: '400',
+    paddingTop: 14,
+    paddingBottom: 14   }
 });

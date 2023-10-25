@@ -16,3 +16,4 @@ export default function Profile() {
     </Stack.Navigator>
   );
 }
+

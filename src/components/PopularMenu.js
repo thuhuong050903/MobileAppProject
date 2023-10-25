@@ -28,7 +28,7 @@ export default function PopularMenu() {
         <Text style={styles.name}>{item.name}</Text>
         <Text style={styles.type}>{item.type}</Text>
       </View>
-      <View style={{justifyContent: 'center'}}>
+      <View style={{justifyContent: 'center', flex: 2}}>
         <Text style={styles.price}>${item.price}</Text>
       </View>
     </View>
@@ -75,13 +75,16 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     backgroundColor: '#fff',
     padding: 10,
+    display: 'flex',
     borderRadius: 10,
+    minHeight: 100
   },
   content: {
     alignItems: 'left',
     justifyContent: 'center',
     marginLeft: 15,
     width: '60%',
+    flex: 4
   },
   name: {
     fontSize: 16,
@@ -96,8 +99,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   image: {
-    flex: 0.5,
-    aspectRatio: 1, 
-    resizeMode: 'cover', 
+    flex: 2,
+    borderRadius: 14
   }
 })

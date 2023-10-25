@@ -57,7 +57,7 @@ export default function OrderCard({ onTotalChange, total }) {
           onPress={() => handleDeleteItem(item.id)}
         >
           <Image
-            style={{ tintColor: 'white' }}
+            style={{ tintColor: 'white', width: 30, height: 30 }}
             source={require('../assets/icons/iconDelete.png')}
           />
         </TouchableOpacity>,
@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 22,
     minHeight: 100,
+    display: 'flex',
     alignItems: 'center',
     marginVertical: 10,
     marginHorizontal: '5%',
@@ -111,6 +112,7 @@ const styles = StyleSheet.create({
     gap: 20,
     marginLeft: 20,
     flexDirection: 'row',
+    flex: 7
   },
   infor: {
     flexDirection: 'column',
@@ -137,6 +139,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'center',
     gap: 15,
+    flex: 4
   },
   btnM: {
     backgroundColor: 'rgba(107, 80, 246, 0.1)',

@@ -43,7 +43,9 @@ export default function Navigation() {
         },
       })}
       tabBarOptions={{
-        tabBarShowLabel: true
+        tabBarShowLabel: true,
+        keyboardHidesTabBar: true,
+        activeBackgroundColor: '#DDD9F3',
       }}
     >
       <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />

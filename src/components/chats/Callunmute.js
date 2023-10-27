@@ -12,7 +12,6 @@ const Callunmute = () => {
                 <Image style={styles.imgchat} source={require('../../assets/ImageChat.png')} ></Image>
                 <View style={styles.btn}>
                     <View style={styles.speakericon}>
-                        
                     </View>
                      <Image style={styles.Volumeup} source={require('../../assets/CloseIcon.png')} ></Image>
                 </View>

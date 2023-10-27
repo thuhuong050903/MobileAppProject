@@ -82,10 +82,10 @@ export default function LoginForm() {
               <Text style={styles.socialButtonText}>Google</Text>
             </TouchableOpacity>
           </View>
-          <Text style={styles.newAccount} onPress={navigation.navigate('FormInfo')}>Don't have an account ?</Text>
+          <Text style={styles.newAccount} onPress={() => navigation.navigate('FormInfo')}>Don't have an account ?</Text>
           <View style={styles.btn}>
-            <TouchableOpacity style={styles.btnLogin}>
-              <Text style={styles.textbtn} onPress={handleLogin}>Login</Text>
+            <TouchableOpacity style={styles.btnLogin}  onPress={handleLogin}>
+              <Text style={styles.textbtn}>Login</Text>
             </TouchableOpacity>
           </View>
         </View>

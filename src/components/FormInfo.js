@@ -32,7 +32,7 @@ import { StyleSheet,
             />
         </View>
         <View style={styles.bottom}>
-            <TouchableOpacity style={styles.btnNext} onPress={() => {navigation.navigate('Login')}}>
+            <TouchableOpacity style={styles.btnNext} onPress={() => {navigation.navigate('Signup')}}>
                 <Text style={styles.btnText}>Next</Text>
             </TouchableOpacity>
         </View>

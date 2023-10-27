@@ -6,7 +6,7 @@ export default function PaymentCard() {
     const navigation = useNavigation();
 
     const handleBackBtn = () => (
-        navigation.navigate('ShoppingCard')
+        navigation.navigate('Payment')
     )
     const payment  = [
         {

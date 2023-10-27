@@ -20,6 +20,7 @@
     "react-native": "0.72.5",
     "react-native-default-preference": "^1.4.4",
     "react-native-elements": "^3.4.3",
+    "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-swipeable": "^0.6.0",
     "react-native-vector-icons": "^10.0.0"
   },

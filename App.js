@@ -5,6 +5,7 @@ import Filter from './src/screens/Filter';
 import { NavigationContainer } from '@react-navigation/native';
 import Chatmessage from './src/components/Chatmessage'
 import PaymentCard from './src/components/PaymentCard';
+import Callunmute from './src/components/chats/Callunmute';
 import Payment from './src/components/Payment';
 const Stack = createStackNavigator();
 
@@ -19,9 +20,8 @@ export default function App() {
         <Stack.Screen name="EditPayment" component={PaymentCard} />
         <Stack.Screen name="Payment" component={Payment} />
 
-      </Stack.Navigator>
+     </Stack.Navigator>
   </NavigationContainer>
-      
   );
 }
 

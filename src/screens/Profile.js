@@ -8,11 +8,11 @@ const Stack = createStackNavigator();
 
 export default function Profile() {
   return (
-    <Stack.Navigator initialRouteName="Login"  screenOptions={{headerShown: false}}>
+    <Stack.Navigator initialRouteName="Start"  screenOptions={{headerShown: false}}>
       <Stack.Screen name="Start" component={Started} />
       <Stack.Screen name="Login" component={LoginForm} />
-      {/* <Stack.Screen name="Signup" component={SignupForm}/>
-      <Stack.Screen name="FormInfo" component={FormInfo}/> */}
+      <Stack.Screen name="Signup" component={SignupForm}/>
+      <Stack.Screen name="FormInfo" component={FormInfo}/>
     </Stack.Navigator>
   );
 }

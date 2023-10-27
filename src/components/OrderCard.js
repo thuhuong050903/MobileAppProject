@@ -15,8 +15,10 @@ export default function OrderCard({ onTotalChange, total }) {
 
   const incrementQuantity = (itemId) => {
     const currentQuantity = itemQuantities[itemId] || 1;
-    const newQuantity = currentQuantity + 1;
-    setItemQuantities({ ...itemQuantities, [itemId]: newQuantity });
+    if (currentQuantity < 10) {
+      const newQuantity = currentQuantity + 1;
+      setItemQuantities({ ...itemQuantities, [itemId]: newQuantity });
+    }
   };
 
   const handleDeleteItem = (itemId) => {

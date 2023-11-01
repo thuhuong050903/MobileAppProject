@@ -1,22 +1,43 @@
 import React from 'react';
-import { StyleSheet,ImageBackground,Image,Text, View } from 'react-native'
+import { useNavigation } from "@react-navigation/native";
+import {
+  StyleSheet,
+  ImageBackground,
+  Image,
+  Text,
+  View,
+  TouchableOpacity,
+} from "react-native";
 const Callunmute = () => {
+      const navigation = useNavigation();
+
+      const handleChat = () => navigation.navigate("Back");
     return (
-        <ImageBackground source={require('../../assets/bgChat.png')} style={{ flex: 1 }}>
-            <View style={styles.container}>
-                <Image style={styles.imgchat} source={require('../../assets/ImageChat.png')} ></Image>
-                <View style={styles.text}>
-                    <Text style={styles.name}>Richard Lewis</Text>
-                    <Text style={styles.status}>Loading...</Text>
-                </View>
-                <Image style={styles.imgchat} source={require('../../assets/ImageChat.png')} ></Image>
-                <View style={styles.btn}>
-                    <View style={styles.speakericon}>
-                    </View>
-                     <Image style={styles.Volumeup} source={require('../../assets/CloseIcon.png')} ></Image>
-                </View>
-            </View>
-        </ImageBackground>
+      <ImageBackground
+        source={require("../../assets/bgChat.png")}
+        style={{ flex: 1 }}
+      >
+        <View style={styles.container}>
+          <Image
+            style={styles.imgchat}
+            source={require("../../assets/ImageChat.png")}
+          ></Image>
+          <View style={styles.text}>
+            <Text style={styles.name}>Richard Lewis</Text>
+            <Text style={styles.status}>Loading...</Text>
+          </View>
+
+          <View style={styles.btn}>
+            <View style={styles.speakericon}></View>
+            <TouchableOpacity onPress={handleChat}>
+              <Image
+                style={styles.Volumeup}
+                source={require("../../assets/CloseIcon.png")}
+              ></Image>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ImageBackground>
     );
 };
 

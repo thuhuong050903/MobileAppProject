@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { Component, useEffect, useState} from 'react';
 import { TouchableOpacity } from 'react-native';
 import {
     StyleSheet,
@@ -13,8 +13,10 @@ import {
     FlatList
 } from 'react-native';
 import PopularMenu from './PopularMenu';
+import { useNavigation } from '@react-navigation/native';
 
 export default function NearestRestaurant() {
+    const navigation = useNavigation();
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -34,11 +36,11 @@ export default function NearestRestaurant() {
     const [showAllRestaurant, setShowAllRestaurant] = useState(false);
 
     const Item = ({data}) =>  (
-        <View style={styles.itemShow}>
+        <TouchableOpacity style={styles.itemShow} onPress={ () => navigation.navigate('bottomSheet', {data})}>
             <Image style={styles.imageItem} source={{uri: data.image}} />
             <Text style={styles.name}>{data.name}</Text>
             <Text style={styles.minutes}>{data.minutes} minutes</Text>
-        </View>
+        </TouchableOpacity>
     );
 
     return (

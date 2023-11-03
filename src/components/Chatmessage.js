@@ -11,41 +11,48 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const { height } = Dimensions.get("window");
 
 export default function Message() {
   const navigation = useNavigation();
-
+ const scrollViewRef = useRef();
   const handleChat = () => navigation.navigate("Call");
   const handleback = () => navigation.navigate("Chatback");
 
-  const [messages, setMessages] = useState([
-    { id: 1, text: "Just to order", sentByUser: true },
-    {
-      id: 2,
-      text: "Okay, for what level of spiciness?",
-      sentByUser: false,
-    },
-    { id: 3, text: "Okay, wait a minute 👍", sentByUser: true },
-    { id: 4, text: "Okay I'm waiting 👍", sentByUser: false },
-  ]);
+const [messages, setMessages] = useState([
+
+]);
 
   const [newMessage, setNewMessage] = useState("");
 
-  const handleSend = () => {
-    if (newMessage) {
-      const newMessageObj = {
-        id: messages.length + 1,
-        text: newMessage,
-        sentByUser: false,
+const handleSend = () => {
+  if (newMessage) {
+    const newMessageObj = {
+      id: messages.length + 1,
+      text: newMessage,
+      sentByUser: false,
+    };
+
+    const updatedMessages = [...messages, newMessageObj];
+    setMessages(updatedMessages);
+    setNewMessage("");
+
+    setTimeout(() => {
+      const replyMessageObj = {
+        id: messages.length + 2,
+        text: "Okay, wait a minute 👍",
+        sentByUser: true,
       };
-      setMessages([...messages, newMessageObj]);
-      setNewMessage("");
-    }
-  };
+
+      setMessages([...updatedMessages, replyMessageObj]);
+    }, 2000); // 2000 milliseconds = 2 giây
+  }
+};
+
+
 
   return (
     <KeyboardAwareScrollView
@@ -90,9 +97,9 @@ export default function Message() {
               </TouchableOpacity>
             </View>
           </View>
-
           <View style={styles.content}>
             <FlatList
+              ref={scrollViewRef}
               data={messages}
               keyExtractor={(item) => item.id.toString()}
               renderItem={({ item }) => (
@@ -105,10 +112,11 @@ export default function Message() {
 
           <View style={styles.form_text}>
             <TextInput
-              style={styles.textInput}
+              style={styles.form_text}
               placeholder="Type your message..."
               onChangeText={(text) => setNewMessage(text)}
               value={newMessage}
+              keyboardDismissMode="on-drag"
             />
             <TouchableOpacity onPress={handleSend}>
               <Image
@@ -220,9 +228,9 @@ const styles = StyleSheet.create({
     bottom: 0,
     width: "100%",
     justifyContent: "space-between",
-    paddingTop: 20,
+    paddingTop: 10,
     paddingRight: 29,
-    paddingBottom: 20,
+    paddingBottom: 10,
     paddingLeft: 12,
     flexDirection: "row",
     backgroundColor: "#F6F6F6",

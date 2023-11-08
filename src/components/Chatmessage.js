@@ -1,4 +1,5 @@
-import { useNavigation } from "@react-navigation/native";
+
+import { useNavigation, useRoute } from "@react-navigation/native";
 import {
   StyleSheet,
   Text,
@@ -11,24 +12,26 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const { height } = Dimensions.get("window");
 
 export default function Message() {
   const navigation = useNavigation();
- const scrollViewRef = useRef();
+  const route = useRoute();
+  const chatData = route.params?.chatData || { messages: [] }; // Lấy dữ liệu chat từ params hoặc tạo mới nếu không có
+
+
+  const scrollViewRef = useRef();
   const handleChat = () => navigation.navigate("Call");
-  const handleback = () => navigation.navigate("Chatback");
+  const handleback = () => navigation.goBack();
 
-const [messages, setMessages] = useState([
-
-]);
+  const [messages, setMessages] = useState([]);
 
   const [newMessage, setNewMessage] = useState("");
 
-const handleSend = () => {
+  const handleSend = () => {
   if (newMessage) {
     const newMessageObj = {
       id: messages.length + 1,
@@ -37,7 +40,8 @@ const handleSend = () => {
     };
 
     const updatedMessages = [...messages, newMessageObj];
-    setMessages(updatedMessages);
+    setMessages(updatedMessages); // hoặc setChatData({ ...chatData, messages: updatedMessages });
+
     setNewMessage("");
 
     setTimeout(() => {
@@ -50,9 +54,7 @@ const handleSend = () => {
       setMessages([...updatedMessages, replyMessageObj]);
     }, 2000); // 2000 milliseconds = 2 giây
   }
-};
-
-
+  };
 
   return (
     <KeyboardAwareScrollView

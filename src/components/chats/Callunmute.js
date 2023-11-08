@@ -11,7 +11,8 @@ import {
 const Callunmute = () => {
       const navigation = useNavigation();
 
-      const handleChat = () => navigation.navigate("Back");
+      const handleChat = () => navigation.goBack();
+
     return (
       <ImageBackground
         source={require("../../assets/bgChat.png")}

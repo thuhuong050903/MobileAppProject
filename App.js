@@ -7,6 +7,7 @@ import Chatmessage from './src/components/Chatmessage'
 import PaymentCard from './src/components/PaymentCard';
 import Callunmute from './src/components/chats/Callunmute';
 import Payment from './src/components/Payment';
+import Map from './src/components/Map';
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -19,9 +20,10 @@ export default function App() {
         <Stack.Screen name="ChatMessage" component={Chatmessage} />
         <Stack.Screen name="EditPayment" component={PaymentCard} />
         <Stack.Screen name="Payment" component={Payment} />
-
      </Stack.Navigator>
   </NavigationContainer>
+
+  // <Map></Map>
   );
 }
 

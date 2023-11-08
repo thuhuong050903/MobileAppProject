@@ -1,7 +1,7 @@
 import React, { Component, useEffect, useState} from 'react';
-import { TouchableOpacity } from 'react-native';
 import {
     StyleSheet,
+    TouchableOpacity,
     Text,
     View,
     Image,
@@ -13,35 +13,12 @@ import {
     FlatList
 } from 'react-native';
 import PopularMenu from './PopularMenu';
-import { useNavigation } from '@react-navigation/native';
+import ItemRestaurant from './Item/ItemRestaurant';
+import DataRestaurant from '../data/dataRestaurant';
 
 export default function NearestRestaurant() {
-    const navigation = useNavigation();
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try{
-                const respone = await fetch('https://6471cfab6a9370d5a41ab469.mockapi.io/restaurant', {method: "GET"});
-                const data = await respone.json();
-                setData(data);
-            }
-            catch{
-                console.error('Error');
-            }
-        }
-        fetchData();
-    }, [])
-
+    const data = DataRestaurant();
     const [showAllRestaurant, setShowAllRestaurant] = useState(false);
-
-    const Item = ({data}) =>  (
-        <TouchableOpacity style={styles.itemShow} onPress={ () => navigation.navigate('bottomSheet', {data})}>
-            <Image style={styles.imageItem} source={{uri: data.image}} />
-            <Text style={styles.name}>{data.name}</Text>
-            <Text style={styles.minutes}>{data.minutes} minutes</Text>
-        </TouchableOpacity>
-    );
 
     return (
         <SafeAreaView style={styles.ViewContent}>
@@ -68,7 +45,7 @@ export default function NearestRestaurant() {
             <View style={styles.FlatList}>
                 <FlatList
                     data={showAllRestaurant ? data : data.slice(0, 2)}
-                    renderItem={({ item }) => <Item data={item} />}
+                    renderItem={({ item }) => <ItemRestaurant data={item} />}
                     keyExtractor={item => item.id}
                     numColumns={2}
                     contentContainerStyle={styles.item}
@@ -129,19 +106,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         marginVertical: 20,
     },
-    name: {
-        textAlign: "center",
-        minWidth: 130,
-        fontSize: 18,
-        fontWeight: 'bold',
-        marginTop: 5,
-        marginBottom: 5,
-    },
-    imageItem: {
-        width: 96,
-        height: 73,
-        marginBottom: 10
-    },
     titleName: {
         fontWeight: 'bold',
         fontSize: 18,
@@ -160,16 +124,5 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         flex: 1,
         // height: Dimensions.get('window').width / 2,
-    },
-    itemShow: {
-        margin: 10,
-        backgroundColor: '#fff',
-        height: 'auto',
-        alignSelf: 'center',
-        alignItems: 'center',
-        padding: 15,
-        width: '45%',
-        borderRadius: 15,
-        marginBottom: 10,
     },
 });

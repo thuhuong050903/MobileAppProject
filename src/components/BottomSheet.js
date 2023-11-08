@@ -14,12 +14,13 @@ import {
   ScrollView
 } from "react-native";
 import ProductDetail from "./FoodDetails/ProductDetail";
+import ProductRelevant from "./FoodDetails/ProductRelevant";
 
 const { width: WINDOW_WIDTH, height: WINDOW_HEIGHT } = Dimensions.get("window");
 const BOTTOM_SHEET_MAX_HEIGHT = WINDOW_HEIGHT * 0.96;
 const BOTTOM_SHEET_MIN_HEIGHT = WINDOW_HEIGHT * 0.65;
 const MAX_UPWARD_TRANSLATE_Y =
-BOTTOM_SHEET_MIN_HEIGHT - BOTTOM_SHEET_MAX_HEIGHT; // negative number;
+BOTTOM_SHEET_MIN_HEIGHT - BOTTOM_SHEET_MAX_HEIGHT;
 const MAX_DOWNWARD_TRANSLATE_Y = 0;
 const DRAG_THRESHOLD = 50;
 
@@ -83,39 +84,17 @@ Animated.spring(animatedValue, {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ImageBackground
-        source={require("../assets/foods/FruitSalad.png")}
-        style={{
-          width: "100%",
-          height: "65%",
-        }}
-        resizeMode="cover"
-      ></ImageBackground>
+      <ImageBackground source={require("../assets/foods/FruitSalad.png")} style={styles.imageBackground} resizeMode="cover"/>
       <Animated.View style={[styles.bottomSheet, bottomSheetAnimation]}>
         <View style={styles.draggableArea} {...panResponder.panHandlers}>
           <View style={styles.dragHandle} />
         </View>
-        <View
-          style={{
-            marginHorizontal: 20,
-            paddingVertical: 8,
-            width: 120,
-            backgroundColor: "#e6fff0",
-            borderRadius: 23,
-            textAlign: "center",
-            alignItems: "center",
-          }}
-        >
-          <Text
-            style={{
-              color: "#6B50F6",
-              fontWeight: "500",
-            }}
-          >
-           Popular
-          </Text>
+        <View style={styles.btnPopular}>
+          <Text style={styles.btnPopularText}>Popular</Text>
         </View>
-          <ProductDetail data={data}/>
+        <ProductDetail data={data}/>
+        <Text style={{margin:25, fontSize: 16, fontWeight: 'bold'}}>Relevant</Text>
+        <ProductRelevant data={data} />
       </Animated.View>
     </SafeAreaView>
   );
@@ -159,6 +138,24 @@ width: 2,
     height: 6,
     backgroundColor: "#d3d3d3",
     borderRadius: 10,
+  },
+  imageBackground: {
+    width: "100%",
+    height: "65%",
+    object: 'fit',
+  },
+  btnPopular: {
+    marginHorizontal: 20,
+    paddingVertical: 8,
+    width: 120,
+    backgroundColor: "#e6fff0",
+    borderRadius: 23,
+    textAlign: "center",
+    alignItems: "center",
+  },
+  btnPopularText: {
+    color: "#6B50F6",
+    fontWeight: "500",
   },
 });
 

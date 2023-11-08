@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-import DataMenu from '../data/dbMenu';
+import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
+import DataCart from '../data/dataCart';
 import Swipeable from 'react-native-swipeable';
 
 export default function OrderCard({ onTotalChange, total }) {
+  const DataMenu = DataCart();
   const [itemQuantities, setItemQuantities] = useState({});
   const [menuItems, setMenuItems] = useState(DataMenu);
 
+  useEffect(() => {
+    setMenuItems(DataMenu);
+  })
+
+  console.log(menuItems);
   const decrementQuantity = (itemId) => {
     const currentQuantity = itemQuantities[itemId] || 1;
     const newQuantity = Math.max(1, currentQuantity - 1);
@@ -67,7 +73,7 @@ export default function OrderCard({ onTotalChange, total }) {
     >
       <View style={styles.cardContainer}>
         <View style={styles.firstContent}>
-          <Image source={item.image} />
+          <Image style={{ width: '40%', borderRadius: 14}} source={{uri: item.image}} />
           <View style={styles.infor}>
             <Text style={styles.menuTitle}>{item.name}</Text>
             <Text style={styles.menuText}>{item.type}</Text>
@@ -88,10 +94,10 @@ export default function OrderCard({ onTotalChange, total }) {
   );
 
   return (
-    <View style={{flex: 8}}>
+    <ScrollView style={{flex: 3}}>
       {menuItems.map((item) => renderItem(item))}
-    </View>
-  );
+    </ScrollView>
+  )
 }
 
 const styles = StyleSheet.create({

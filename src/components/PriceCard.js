@@ -36,8 +36,7 @@ const styles = StyleSheet.create({
   detailContainer: {
     display: 'flex',
     flexDirection: 'row',
-    marginTop: '15%',
-    flex: 6
+    flex: 0.8
   },
   img: {
     flex: 1,

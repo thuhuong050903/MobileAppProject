@@ -16,7 +16,6 @@ export default function ShoppingCard() {
       <Text style={styles.title}>Order details</Text>
       <OrderCard onTotalChange={handleTotalChange} total={total} />
       <PriceCard subtotal={total} delivery={15} discount={20}/>
-    
     </View>
     
   )
@@ -31,14 +30,13 @@ const styles = StyleSheet.create({
     },
     imgBack: {
       marginLeft:'5%',
-      flex: 1
+      // flex: 1
     },
     title: {
       fontSize: 25,
       fontWeight: '500',
       marginVertical: 10,
       marginLeft: '5%',
-      flex: 1
-
+      // flex: 1
     }
 })

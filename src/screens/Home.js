@@ -3,6 +3,7 @@ import React from 'react';
 import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import NearestRestaurant from '../components/NearestRestaurant';
+// import SwipeableBottomPanel from '../components/test/swipeable'
 
 export default function Home() {
   
@@ -14,6 +15,7 @@ export default function Home() {
       <NearestRestaurant/>
     </ImageBackground>
     </ScrollView>
+    // <SwipeableBottomPanel/>
   )
 }
 

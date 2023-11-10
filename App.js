@@ -8,19 +8,21 @@ import PaymentCard from './src/components/PaymentCard';
 import Callunmute from './src/components/chats/Callunmute';
 import Payment from './src/components/Payment';
 import BottomSheet from './src/components/BottomSheet';
+import Details from './src/screens/ProductDetails';
 const Stack = createStackNavigator();
 
 export default function App() {
   
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: true }}>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="MainStack" component={Navigation} />
         <Stack.Screen name="Filter" component={Filter} />
         <Stack.Screen name="ChatMessage" component={Chatmessage} />
         <Stack.Screen name="EditPayment" component={PaymentCard} />
         <Stack.Screen name="Payment" component={Payment} />
         <Stack.Screen name="bottomSheet" component={BottomSheet} />
+        <Stack.Screen name="detail" component={Details} />
      </Stack.Navigator>
   </NavigationContainer>
   );

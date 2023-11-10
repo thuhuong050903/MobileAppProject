@@ -1,34 +1,65 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView, View, Text, StyleSheet } from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import DataProduct from '../../data/dataProduct';
+import { useNavigation } from '@react-navigation/core';
 
-import ItemProduct from '../Item/ItemProduct';
-
-export default function ProductRelevant(props) {
+export default function ProductRelevant() {
+    const navigation = useNavigation();
     const dataProduct = DataProduct();
-    const { data } = props;
-    const dataType = data.type;
-    const [dataRelevants, setDataRelevants] = useState([]);
 
-    useEffect(() => {
-        const newData = dataProduct.filter((product) => {
-            return ((product.type === dataType) && (product.id != data.id)); 
-        });
-        setDataRelevants(newData);
-    }, [dataType]); 
+    const ProductRelevant = ({data}) => (
+        <TouchableOpacity style={styles.itemShow} onPress={ () => navigation.navigate('bottomSheet', {data})}>
+            <Image style={styles.imageItem} source={{uri: data.image}} />
+            <Text style={styles.name}>{data.name}</Text>
+            <Text style={styles.minutes}>{data.price} $</Text>
+        </TouchableOpacity>
+    )
 
     return (
-        <ScrollView style={styles.container}>
-            {dataRelevants.map((data) => (
-                <ItemProduct data={data} key={data.id} />
+        <View style={styles.container}>
+            {dataProduct.map((data) => (
+                <ProductRelevant data={data} key={data.id} />
             ))}
-        </ScrollView>
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginHorizontal: 20,
+        flexDirection: 'row',
+        marginHorizontal: 10,
+
+    },
+    itemShow: {
+        backgroundColor: '#fff',
+        alignSelf: 'center',
+        alignItems: 'center',
+        padding: 10,
+        margin: 10,
+        minHeight: 100,
+        borderRadius: 15,
+        borderColor: '#F4F4F4',
+        shadowColor: '#5A6CEA',
+        shadowOffset: {
+            width: 12,
+            height: 26,
+            },
+        shadowRadius: 50,
+        shadowOpacity: 0.07,
+        elevation: 3,
+    },
+    name: {
+        textAlign: "center",
+        minWidth: 130,
+        fontSize: 14,
+        fontWeight: 'bold',
+        marginTop: 5,
+        marginBottom: 5,
+    },
+    imageItem: {
+        width: 100,
+        height: 100,
+        marginBottom: 10
     },
 });

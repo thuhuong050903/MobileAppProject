@@ -12,7 +12,7 @@ export default ItemProduct = (props) => {
     const navigation = useNavigation();
     const {data} = props;
     return (
-        <TouchableOpacity style={styles.ItemContainer} onPress={ () => navigation.navigate('bottomSheet', {data})}>
+        <TouchableOpacity style={styles.ItemContainer} onPress={ () => navigation.navigate('detail', {data})}>
             <Image style={styles.image} source={{uri: data.image}}></Image>
             <View style={styles.content}> 
                 <Text style={styles.name}>{data.name}</Text>

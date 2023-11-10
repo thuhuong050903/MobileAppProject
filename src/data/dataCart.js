@@ -8,7 +8,7 @@ const DataCart = () => {
       try {
         const response = await fetch('https://6410c403da042ca131fb737e.mockapi.io/Cart', { method: "GET" });
         const jsonData = await response.json();
-        setData(jsonData[0].product);
+        setData(jsonData);
       } catch (error) {
         console.error('Error:', error);
       }

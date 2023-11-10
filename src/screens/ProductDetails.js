@@ -10,9 +10,10 @@ import {
   ImageBackground,
   SafeAreaView,
 } from "react-native";
-import ProductDetail from "./FoodDetails/ProductDetail";
-import ProductRelevant from "./FoodDetails/ProductRelevant";
-import ItemComment from "./Item/commentRestaurant";
+import ProductDetail from "../components/FoodDetails/ProductDetail";
+import ProductRelevant from "../components/FoodDetails/ProductRelevant";
+import BtnAddCart from "../components/Item/btnAddCart";
+import ItemComment from "../components/Item/commentRestaurant";
 import { ScrollView } from "react-native-gesture-handler";
 
 const { width: WINDOW_WIDTH, height: WINDOW_HEIGHT } = Dimensions.get("window");
@@ -23,7 +24,7 @@ BOTTOM_SHEET_MIN_HEIGHT - BOTTOM_SHEET_MAX_HEIGHT;
 const MAX_DOWNWARD_TRANSLATE_Y = 0;
 const DRAG_THRESHOLD = 50;
 
-const BottomSheet = ({route}) => {
+const Details = ({route}) => {
   const {data} = route.params;
   console.log(data.comment);
   const animatedValue = useRef(new Animated.Value(0)).current;
@@ -94,12 +95,13 @@ Animated.spring(animatedValue, {
             <Text style={styles.btnPopularText}>Popular</Text>
           </View>
           <ProductDetail data={data}/>
-          <Text style={{marginHorizontal: 20, fontSize: 16, fontWeight: 'bold'}}>Food</Text>
+          <Text style={{marginHorizontal: 20, fontSize: 16, fontWeight: 'bold'}}>Food Relevant</Text>
           <ProductRelevant data={data} />
           <Text style={{marginHorizontal: 20, marginBottom: 10, fontSize: 16, fontWeight: 'bold'}}>Comment</Text>
           <ItemComment data={data.comment}/>
         </ScrollView>
-      </Animated.View>      
+      </Animated.View>
+      <BtnAddCart data={data}/>
     </SafeAreaView>
   );
 };
@@ -163,4 +165,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BottomSheet;
+export default Details;

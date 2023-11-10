@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import { StyleSheet } from "react-native";
-import Navigation from "./src/navigator/Navigation";
-import { createStackNavigator } from "@react-navigation/stack";
-import Filter from "./src/screens/Filter";
-import { NavigationContainer } from "@react-navigation/native";
-import Chatmessage from "./src/components/Chatmessage";
-import PaymentCard from "./src/components/PaymentCard";
-import Callunmute from "./src/components/chats/Callunmute";
-import Payment from "./src/components/Payment";
-import Message from "./src/screens/Message";
+
+import { StyleSheet } from 'react-native';
+import Navigation from './src/navigator/Navigation';
+import { createStackNavigator } from '@react-navigation/stack';
+import Filter from './src/screens/Filter';
+import { NavigationContainer } from '@react-navigation/native';
+import Chatmessage from './src/components/Chatmessage'
+import PaymentCard from './src/components/PaymentCard';
+import Callunmute from './src/components/chats/Callunmute';
+import Payment from './src/components/Payment';
+import BottomSheet from './src/components/BottomSheet';
+
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -24,7 +25,7 @@ export default function App() {
           component={Navigation}
           initialParams={{ chatData }}
         />
-        {/* <Stack.Screen name="MainStack" component={Navigation} /> */}
+        <Stack.Screen name="MainStack" component={Navigation} />
         <Stack.Screen name="Filter" component={Filter} />
         <Stack.Screen name="ChatMessage" component={Chatmessage} />
         <Stack.Screen name="EditPayment" component={PaymentCard} />
@@ -32,8 +33,9 @@ export default function App() {
         <Stack.Screen name="Call" component={Callunmute} />
         <Stack.Screen name="Back" component={Chatmessage} />
         <Stack.Screen name="Chatback" component={Message} />
-      </Stack.Navigator>
-    </NavigationContainer>
+        <Stack.Screen name="bottomSheet" component={BottomSheet} />
+     </Stack.Navigator>
+  </NavigationContainer>
   );
 }
 

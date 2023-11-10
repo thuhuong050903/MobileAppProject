@@ -8,17 +8,26 @@ export default function Message() {
     navigation.navigate('ChatMessage')
   );
   return (
-    <ImageBackground source={require('../assets/Pattern.png')} style={{ flex: 1 }}>
+    <ImageBackground
+      source={require("../assets/Pattern.png")}
+      style={{ flex: 1 }}
+    >
       <View style={styles.container}>
-        <View style={styles.icon}>
-          <Image style={styles.vector} source={require('../assets/Back.png')} ></Image>
-        </View>
+          <View style={styles.icon}>
+            <Image
+              style={styles.vector}
+              source={require("../assets/Back.png")}
+            ></Image>
+          </View>
         <Text style={styles.chat}>Chat</Text>
 
         <View style={styles.container_notification}>
           <TouchableOpacity style={styles.notification} onPress={handleChat}>
             <View style={styles.protofile}>
-              <Image style={styles.vector} source={require('../assets/Profile_Louis.png')}></Image>
+              <Image
+                style={styles.vector}
+                source={require("../assets/Profile_Louis.png")}
+              ></Image>
             </View>
             <View style={styles.information}>
               <Text style={styles.name}>Louis Kelly</Text>
@@ -29,20 +38,26 @@ export default function Message() {
 
           <View style={styles.notification}>
             <View style={styles.protofile}>
-              <Image style={styles.vector} source={require('../assets/PaulKoch.png')}></Image>
+              <Image
+                style={styles.vector}
+                source={require("../assets/PaulKoch.png")}
+              ></Image>
             </View>
 
             <View style={styles.information}>
               <Text style={styles.name}>Paul Koch</Text>
               <Text style={styles.status}>Your Order Just Arrived!</Text>
             </View>
-            
+
             <Text style={styles.time}>20:00</Text>
           </View>
 
           <View style={styles.notification}>
             <View style={styles.protofile}>
-              <Image style={styles.vector} source={require('../assets/CarlaKlein.png')}></Image>
+              <Image
+                style={styles.vector}
+                source={require("../assets/CarlaKlein.png")}
+              ></Image>
             </View>
             <View style={styles.information}>
               <Text style={styles.name}>Carla Klein</Text>
@@ -51,11 +66,9 @@ export default function Message() {
             <Text style={styles.time}>20:00</Text>
           </View>
         </View>
-
-
       </View>
     </ImageBackground>
-  )
+  );
 }
 
 const styles = StyleSheet.create({

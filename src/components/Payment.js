@@ -40,7 +40,10 @@ export default function Payment() {
           display: 'flex',
           flexDirection: 'column',
         },
-
+        firstRow: {
+          display: 'flex',
+          flexDirection: 'row'
+        },
         imgBack: {
           marginLeft: '5%',
         },

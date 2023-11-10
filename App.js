@@ -15,7 +15,7 @@ export default function App() {
   
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: true }}>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="MainStack" component={Navigation} />
         <Stack.Screen name="Filter" component={Filter} />
         <Stack.Screen name="ChatMessage" component={Chatmessage} />

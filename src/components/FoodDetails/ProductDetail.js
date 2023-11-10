@@ -43,7 +43,7 @@ export default ProductDetail = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 2,
         marginHorizontal: 25,
         backgroundColor: '#fff',
     },
@@ -75,7 +75,6 @@ const styles = StyleSheet.create({
     },
     des: {
         color: '#22242E',
-        fontFamily: 'BentonSans Book',
         fontSize: 14,
         fontStyle: 'normal',
         marginBottom: 20,

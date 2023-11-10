@@ -3,7 +3,7 @@ import React from 'react'
 import OrderCard from '../components/OrderCard'
 import { Image } from 'react-native'
 import PriceCard from '../components/PriceCard'
-import { useState  } from 'react'
+import { useState } from 'react'
 export default function ShoppingCard() {
   const [total, setTotal] = useState(0);
 

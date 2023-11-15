@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import DataCart from '../data/dataCart';
 import Swipeable from 'react-native-swipeable';
 
@@ -10,9 +10,8 @@ export default function OrderCard({ onTotalChange, total }) {
 
   useEffect(() => {
     setMenuItems(DataMenu);
-  })
+  },[DataMenu])
 
-  console.log(menuItems);
   const decrementQuantity = (itemId) => {
     const currentQuantity = itemQuantities[itemId] || 1;
     const newQuantity = Math.max(1, currentQuantity - 1);
@@ -27,9 +26,21 @@ export default function OrderCard({ onTotalChange, total }) {
     }
   };
 
-  const handleDeleteItem = (itemId) => {
-    const updatedItems = menuItems.filter((item) => item.id !== itemId);
-    setMenuItems(updatedItems);
+  const handleDeleteItem = async (itemId) => {
+    try {
+        const response = await fetch(`https://6410c403da042ca131fb737e.mockapi.io/Cart/${itemId}`, {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'},
+      });
+      if (response.status == 204) {
+        Alert.alert('Success', 'Delete successfully');
+        setMenuItems(menuItems.filter(item => item.id !== itemId));
+      } else {
+        Alert.alert('Error', 'Delete fail');
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
 
@@ -39,9 +50,9 @@ export default function OrderCard({ onTotalChange, total }) {
       total += (item.price * (itemQuantities[item.id] || 1));
     }
     onTotalChange(total);
-
     return total;
   };
+
   useEffect(() => {
     const newTotal = calculateTotal();
     onTotalChange(newTotal);
@@ -70,6 +81,7 @@ export default function OrderCard({ onTotalChange, total }) {
           />
         </TouchableOpacity>,
       ]}
+      useNativeDriver={false}
     >
       <View style={styles.cardContainer}>
         <View style={styles.firstContent}>

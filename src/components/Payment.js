@@ -1,75 +1,146 @@
-import { StyleSheet, Text, View, Image, useWindowDimensions} from 'react-native'
-import React from 'react'
-import { TouchableOpacity } from 'react-native-gesture-handler'
-import { useNavigation } from '@react-navigation/core'
-export default function Payment() {
-    const navigation = useNavigation();
+import React from 'react';
+import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity, ScrollView } from 'react-native'; 
+import { useNavigation } from '@react-navigation/native';
+const image = require('../assets/Bg.png')
+const imagebg = require('../assets/Pattern.png')
 
-    const handleBackBtn = () => (
-        navigation.navigate('ShoppingCard')
-    )
-    const handleEdit = () => (
-        navigation.navigate('EditPayment')
-    )
-  return (
-    <View style={styles.orderContainer}>
-        <TouchableOpacity onPress={handleBackBtn}>
-        <Image source={require('../assets/Group.png')}></Image>
-        </TouchableOpacity>      
-        <Text style={styles.title}>Confirm Order</Text>
-      <View style= {styles.subContainer}>
-        <View style={styles.firstRow}>
-            <Text style={styles.deliveryText}>Delivery to</Text>
-            <TouchableOpacity onPress={handleEdit}>
-            <Text style={styles.editButton}>Edit</Text>
-            </TouchableOpacity>
-        </View>
-        <View>
-            <Image source={require('../assets/icons/IconLocation.png')} style={styles.locationImage} />
-            <Text style={styles.locationText}>4517 Washington Ave. Manchester, Kentucky 39495</Text>
-        </View>
+const Payment = () => {
+  const navigation = useNavigation();
 
-      </View>
-    </View>
+  const handleBackBtn = () => (
+      navigation.navigate('ShoppingCard')
   )
+  const handleEdit = () => (
+      navigation.navigate('EditPayment')
+  )
+    return (
+        <View style={StyleSheet.container}>
+          <ImageBackground source={image}  style={styles.img}>
+            <TouchableOpacity style={styles.icon} onPress={handleBackBtn}>
+            <Image source={require('../assets/icons/backbtn.png')} />
+            </TouchableOpacity>
+            <View style={styles.header}>
+                <Text style={styles.confirm}>Cofirm Oder</Text>
+            </View>
+            <View style={styles.location}>
+                <Text style={styles.delivery}>Deliver To</Text>
+                  <TouchableOpacity onPress={handleEdit}>
+                  <Text style={styles.edit} >Edit</Text>
+                  </TouchableOpacity>
+                <View style={styles.icon_location}>
+                    <Image source={require('../assets/icons/IconLocation.png')}></Image>
+                    <Text style={styles.address}>4517 Washington Ave. Manchester,</Text>
+                    <Text style={styles.address}>Kentucky 39495</Text>
+                </View>
+            </View>
+            <View style={styles.card}>
+                <Text style={styles.delivery}>Payment Method</Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Payment')}>
+                  <Text style={styles.edit} >Edit</Text>
+                  </TouchableOpacity>
+                <View style={styles.icon_location}>
+                    <Image source={require('../assets/icons/PayoneerLogo.png')}></Image>
+                    <Text style={styles.seri}>2121 6352 8465 ****</Text>
+                </View>
+            </View>
+            <View style={styles.checkout}>
+                <ImageBackground source={imagebg} resizeMode='cover' style={styles.imagebg}></ImageBackground>
+                <Text style={styles.sub}>Sub - Total</Text>
+                <Text style={styles.price_one}>120 $</Text>
+                <Text style={styles.charge}>Delivery Charge</Text>
+                <Text style={styles.price_two}>10 $</Text>
+                <Text style={styles.discount}>Discount</Text>
+                <Text style={styles.price_three}>20 $</Text>
+                <Text style={styles.total}>Total</Text>
+                <Text style={styles.Total_price}>150 $</Text>
+                <TouchableOpacity style={styles.button}>
+                    <Text style={styles.plOrder}>Place My Order</Text>
+                </TouchableOpacity>
+            </View>
+            </ImageBackground>
+        </View>
+    )
 }
 
-    const styles = StyleSheet.create({
-        orderContainer: {
-          marginTop: '10%',
-          display: 'flex',
-          flexDirection: 'column',
-        },
-        firstRow: {
-          display: 'flex',
-          flexDirection: 'row'
-        },
-        imgBack: {
-          marginLeft: '5%',
-        },
-        title: {
-          fontSize: 25,
-          fontWeight: '500',
-          marginVertical: 10,
-          marginLeft: '5%',
-        },
-        subContainer: {
-            flexDirection:'column'
-        },
-        
-        deliveryText: {
-          fontSize: 16,
-          fontWeight: 'bold',
-        },
-        editButton: {
-          color: 'blue',
-        },
-        locationImage: {
-          width: 20,
-          height: 20,
-        },
-        locationText: {
-          fontSize: 16,
-        },
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+    },
+    img: {
+        width: '100%',
+        height: '100%',
+      },
+      imagebg: {
+        width: 390,
+        height: '100%',
+            },
+      icon: {
       
-})
+      },
+      confirm: {
+        
+      },
+      header: {
+       
+      },
+      location: {
+        
+      },
+      delivery: {
+       
+      },
+      edit: {
+        
+      },
+      icon_location: {
+        
+      },
+      address: {
+        
+      },
+      seri: {
+       
+      },
+      card: {
+        
+      },
+      checkout: {
+        
+      },
+      sub: {
+       
+      },
+      price_one: {
+       
+      },
+      price_two: {
+       
+      },
+      price_three: {
+        
+      },
+      charge: {
+        
+      },
+      discount: {
+        
+      },
+      total: {
+       
+      },
+      Total_price: {
+       
+      },
+      plOrder: {
+      
+
+      },
+      button: {
+     
+      },
+});
+
+export default Payment;

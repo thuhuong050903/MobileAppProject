@@ -68,32 +68,39 @@ const styles = StyleSheet.create({
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'flex-start',
+      paddingTop: 20
     },
     img: {
         width: '100%',
         height: '100%',
       },
-      imagebg: {
+    imagebg: {
         width: 390,
         height: '100%',
-            },
-      icon: {
-      
+        },
+    icon: {
+      marginLeft:'7%',
+      marginTop: '10%'
       },
       confirm: {
-        
+        fontSize: 25,
+        fontWeight: '700'
       },
       header: {
-       
+       marginLeft: '7%',
+       marginTop: '2%'
+      
       },
       location: {
-        
+        display:'flex',
+        flexDirection:'row',
+        justifyContent:'space-between'
       },
       delivery: {
-       
+       color: 'gray'
       },
       edit: {
-        
+        color:'#6B50F6'
       },
       icon_location: {
         

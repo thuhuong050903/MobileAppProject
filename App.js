@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { StyleSheet } from 'react-native';
+import { useState } from 'react';
 import Navigation from './src/navigator/Navigation';
 import { createStackNavigator } from '@react-navigation/stack';
 import Filter from './src/screens/Filter';
+import Message from './src/screens/Message';
 import { NavigationContainer } from '@react-navigation/native';
 import Chatmessage from './src/components/Chatmessage'
 import PaymentCard from './src/components/PaymentCard';
@@ -27,7 +29,7 @@ export default function App() {
           component={Navigation}
           initialParams={{ chatData }}
         />
-        {/* <Stack.Screen name="MainStack" component={Navigation} /> */}
+
         <Stack.Screen name="Filter" component={Filter} />
         <Stack.Screen name="ChatMessage" component={Chatmessage} />
         <Stack.Screen name="EditPayment" component={PaymentCard} />

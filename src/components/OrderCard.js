@@ -28,21 +28,19 @@ export default function OrderCard({ onTotalChange, total }) {
 
   const handleDeleteItem = async (itemId) => {
     try {
-        const response = await fetch(`https://6410c403da042ca131fb737e.mockapi.io/Cart/${itemId}`, {
-        method: 'DELETE',
-        headers: {'Content-Type': 'application/json'},
+      const response = await fetch(`https://6410c403da042ca131fb737e.mockapi.io/Cart/${itemId}`, {
+          method: 'DELETE',
       });
-      if (response.status == 204) {
-        Alert.alert('Success', 'Delete successfully');
-        setMenuItems(menuItems.filter(item => item.id !== itemId));
+      if (response.ok) {
+          Alert.alert('Success', 'Delete successfully');
+          setMenuItems(menuItems.filter(item => item.id !== itemId));
       } else {
-        Alert.alert('Error', 'Delete fail');
+          console.log('Delete failure', response.status);
       }
     } catch (error) {
-      console.log(error);
-    }
-  };
-
+        console.error('Error:', error);
+      }
+    };
 
   const calculateTotal = () => {
     let total = 0;
@@ -81,7 +79,7 @@ export default function OrderCard({ onTotalChange, total }) {
           />
         </TouchableOpacity>,
       ]}
-      useNativeDriver={false}
+      setuseNativeDriver={false}
     >
       <View style={styles.cardContainer}>
         <View style={styles.firstContent}>

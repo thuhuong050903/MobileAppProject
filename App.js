@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { StyleSheet } from 'react-native';
-import { useState } from 'react';
 import Navigation from './src/navigator/Navigation';
 import { createStackNavigator } from '@react-navigation/stack';
 import Filter from './src/screens/Filter';
@@ -12,7 +11,7 @@ import Callunmute from './src/components/chats/Callunmute';
 import Payment from './src/components/Payment';
 import BottomSheet from './src/components/BottomSheet';
 import Details from './src/screens/ProductDetails';
-import Message from './src/screens/Message';
+import EditLocation from './src/components/EditLocation';
 
 const Stack = createStackNavigator();
 
@@ -39,6 +38,8 @@ export default function App() {
         <Stack.Screen name="Chatback" component={Message} />
         <Stack.Screen name="bottomSheet" component={BottomSheet} />
         <Stack.Screen name="detail" component={Details} />
+        <Stack.Screen name="editLocation" component={EditLocation} />
+
      </Stack.Navigator>
   </NavigationContainer>
   );

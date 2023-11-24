@@ -1,153 +1,103 @@
 import React from 'react';
-import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity, ScrollView } from 'react-native'; 
+import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-const image = require('../assets/Bg.png')
-const imagebg = require('../assets/Pattern.png')
 
 const Payment = () => {
   const navigation = useNavigation();
 
-  const handleBackBtn = () => (
-      navigation.navigate('ShoppingCard')
-  )
-  const handleEdit = () => (
-      navigation.navigate('EditPayment')
-  )
-    return (
-        <View style={StyleSheet.container}>
-          <ImageBackground source={image}  style={styles.img}>
-            <TouchableOpacity style={styles.icon} onPress={handleBackBtn}>
-            <Image source={require('../assets/icons/backbtn.png')} />
-            </TouchableOpacity>
-            <View style={styles.header}>
-                <Text style={styles.confirm}>Cofirm Oder</Text>
-            </View>
-            <View style={styles.location}>
-                <Text style={styles.delivery}>Deliver To</Text>
-                  <TouchableOpacity onPress={handleEdit}>
-                  <Text style={styles.edit} >Edit</Text>
-                  </TouchableOpacity>
-                <View style={styles.icon_location}>
-                    <Image source={require('../assets/icons/IconLocation.png')}></Image>
-                    <Text style={styles.address}>4517 Washington Ave. Manchester,</Text>
-                    <Text style={styles.address}>Kentucky 39495</Text>
-                </View>
-            </View>
-            <View style={styles.card}>
-                <Text style={styles.delivery}>Payment Method</Text>
-                <TouchableOpacity onPress={() => navigation.navigate('Payment')}>
-                  <Text style={styles.edit} >Edit</Text>
-                  </TouchableOpacity>
-                <View style={styles.icon_location}>
-                    <Image source={require('../assets/icons/PayoneerLogo.png')}></Image>
-                    <Text style={styles.seri}>2121 6352 8465 ****</Text>
-                </View>
-            </View>
-            <View style={styles.checkout}>
-                <ImageBackground source={imagebg} resizeMode='cover' style={styles.imagebg}></ImageBackground>
-                <Text style={styles.sub}>Sub - Total</Text>
-                <Text style={styles.price_one}>120 $</Text>
-                <Text style={styles.charge}>Delivery Charge</Text>
-                <Text style={styles.price_two}>10 $</Text>
-                <Text style={styles.discount}>Discount</Text>
-                <Text style={styles.price_three}>20 $</Text>
-                <Text style={styles.total}>Total</Text>
-                <Text style={styles.Total_price}>150 $</Text>
-                <TouchableOpacity style={styles.button}>
-                    <Text style={styles.plOrder}>Place My Order</Text>
-                </TouchableOpacity>
-            </View>
-            </ImageBackground>
+  const handleNavigation = (screen) => () => {
+    navigation.navigate(screen);
+  };
+
+  return (
+    <View style={styles.container}>
+      <ImageBackground source={require('../assets/Bg.png')} style={styles.img}>
+        <TouchableOpacity style={styles.icon} onPress={handleNavigation('ShoppingCard')}>
+          <Image source={require('../assets/icons/backbtn.png')} />
+        </TouchableOpacity>
+        <View style={styles.header}>
+          <Text style={styles.confirm}>Confirm Order</Text>
         </View>
-    )
-}
+
+        {renderSection('Deliver To', 'Edit', 'IconLocation.png', '4517 Washington Ave. Manchester, Kentucky 39495','editLocation')}
+        {renderSection('Payment Method', 'Edit', 'PayoneerLogo.png', '2121 6352 8465 ****', 'EditPayment')}
+      </ImageBackground>
+    </View>
+  );
+
+  function renderSection(title, editLabel, iconSource, content,navigation) {
+    return (
+      <View style={styles.section}>
+        <View style={styles.sectionTop}>
+          <Text style={styles.delivery}>{title}</Text>
+          <TouchableOpacity onPress={handleNavigation({navigation})}>
+            <Text style={styles.edit}>{editLabel}</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.iconContent}>
+          <Image source={require(`../assets/icons/${iconSource}`)} />
+          <Text style={styles.content}>{content}</Text>
+        </View>
+      </View>
+    );
+  }
+};
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-      paddingTop: 20
-    },
-    img: {
-        width: '100%',
-        height: '100%',
-      },
-    imagebg: {
-        width: 390,
-        height: '100%',
-        },
-    icon: {
-      marginLeft:'7%',
-      marginTop: '10%'
-      },
-      confirm: {
-        fontSize: 25,
-        fontWeight: '700'
-      },
-      header: {
-       marginLeft: '7%',
-       marginTop: '2%'
-      
-      },
-      location: {
-        display:'flex',
-        flexDirection:'row',
-        justifyContent:'space-between'
-      },
-      delivery: {
-       color: 'gray'
-      },
-      edit: {
-        color:'#6B50F6'
-      },
-      icon_location: {
-        
-      },
-      address: {
-        
-      },
-      seri: {
-       
-      },
-      card: {
-        
-      },
-      checkout: {
-        
-      },
-      sub: {
-       
-      },
-      price_one: {
-       
-      },
-      price_two: {
-       
-      },
-      price_three: {
-        
-      },
-      charge: {
-        
-      },
-      discount: {
-        
-      },
-      total: {
-       
-      },
-      Total_price: {
-       
-      },
-      plOrder: {
-      
-
-      },
-      button: {
-     
-      },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    paddingTop: 20,
+  },
+  img: {
+    width: '100%',
+    height: '100%',
+  },
+  icon: {
+    marginLeft: '7%',
+    marginTop: '10%',
+  },
+  confirm: {
+    fontSize: 25,
+    fontWeight: '700',
+    marginLeft: '7%',
+    marginTop: '2%',
+  },
+  header: {
+    marginLeft: '7%',
+    marginTop: '2%',
+  },
+  section: {
+    width: '90%',
+    backgroundColor: '#ffffff',
+    elevation: 5,
+    alignSelf: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    borderRadius: 20,
+    marginTop: 20,
+  },
+  sectionTop: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 5,
+  },
+  delivery: {
+    color: 'gray',
+  },
+  edit: {
+    color: '#6B50F6',
+  },
+  iconContent: {
+    flexDirection: 'row',
+    gap: 20,
+  },
+  content: {
+    flex: 3,
+  },
 });
 
 export default Payment;

@@ -1,19 +1,32 @@
-import { createStackNavigator } from '@react-navigation/stack';
-import LoginForm from '../components/LoginForm';
-import Started from '../components/Started';
-import SignupForm from '../components/SignupForm';
-import FormInfo from '../components/FormInfo';
-
-const Stack = createStackNavigator();
+import React, { useEffect, useState } from 'react';
+import Started from '../components/Signup/Started';
+import ProfilesUser from '../components/profileUser/profilesUser';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Profile() {
+  const [userExists, setUserExists] = useState(false);
+  
+  useEffect(() => {
+    const checkUser = async () => {
+      try {
+        const value = await AsyncStorage.getItem('user');
+        if (value) {
+          setUserExists(true);
+          console.log(userExists);
+        }
+        else {
+          setUserExists(false);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    checkUser();
+  }, []);
+
   return (
-    <Stack.Navigator initialRouteName="Start"  screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Start" component={Started} />
-      <Stack.Screen name="Login" component={LoginForm} />
-      <Stack.Screen name="Signup" component={SignupForm}/>
-      <Stack.Screen name="FormInfo" component={FormInfo}/>
-    </Stack.Navigator>
+    userExists ? <ProfilesUser/>:<Started/>
   );
 }
 

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, FlatList, Touchable, TouchableOpacity } from 'react-native';
-import BtnFilter from '../components/BtnFilter';
-import BtnLarge from '../components/BtnLarge';
+import BtnFilter from '../components/button/BtnFilter';
+import BtnLarge from '../components/button/BtnLarge';
 import Header from '../components/Header';
-import SearchBar from '../components/SearchBar';
+import SearchBar from '../components/Search/SearchBar';
 
 
 export default function Filter() {

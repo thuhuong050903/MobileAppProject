@@ -14,7 +14,7 @@ export default function Payment() {
   return (
     <View style={styles.orderContainer}>
         <TouchableOpacity onPress={handleBackBtn}>
-        <Image source={require('../assets/Group.png')}></Image>
+        <Image source={require('../../assets/Group.png')}></Image>
         </TouchableOpacity>      
         <Text style={styles.title}>Confirm Order</Text>
       <View style= {styles.subContainer}>
@@ -25,7 +25,7 @@ export default function Payment() {
             </TouchableOpacity>
         </View>
         <View>
-            <Image source={require('../assets/icons/IconLocation.png')} style={styles.locationImage} />
+            <Image source={require('../../assets/icons/IconLocation.png')} style={styles.locationImage} />
             <Text style={styles.locationText}>4517 Washington Ave. Manchester, Kentucky 39495</Text>
         </View>
 

@@ -37,7 +37,7 @@ export default function PaymentCard() {
   return (
     <View style={styles.container}>
         <TouchableOpacity onPress={handleBackBtn}>
-        <Image source={require('../assets/Group.png')}></Image>
+        <Image source={require('../../assets/Group.png')}></Image>
         </TouchableOpacity>
         <Text style={styles.title}>Payment</Text>
         <FlatList 

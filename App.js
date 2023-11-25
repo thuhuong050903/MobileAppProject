@@ -4,13 +4,18 @@ import Navigation from './src/navigator/Navigation';
 import { createStackNavigator } from '@react-navigation/stack';
 import Filter from './src/screens/Filter';
 import { NavigationContainer } from '@react-navigation/native';
-import Chatmessage from './src/components/Chatmessage'
-import PaymentCard from './src/components/PaymentCard';
+import Chatmessage from './src/components/chats/Chatmessage'
+import PaymentCard from './src/components/Cart/PaymentCard';
 import Callunmute from './src/components/chats/Callunmute';
-import Payment from './src/components/Payment';
+import Payment from './src/components/Cart/Payment';
 import BottomSheet from './src/components/BottomSheet';
 import Details from './src/screens/ProductDetails';
 import Message from './src/screens/Message';
+
+import LoginForm from './src/components/Login/LoginForm';
+import Started from './src/components/Signup/Started';
+import SignupForm from './src/components/Signup/SignupForm';
+import FormInfo from './src/components/Signup/FormInfo';
 
 const Stack = createStackNavigator();
 
@@ -37,6 +42,13 @@ export default function App() {
         <Stack.Screen name="Chatback" component={Message} />
         <Stack.Screen name="bottomSheet" component={BottomSheet} />
         <Stack.Screen name="detail" component={Details} />
+
+        {/* Đăng nhập */}
+        <Stack.Screen name="Start" component={Started} />
+        <Stack.Screen name="Login" component={LoginForm} />
+        <Stack.Screen name="Signup" component={SignupForm}/>
+        <Stack.Screen name="FormInfo" component={FormInfo}/>
+        
      </Stack.Navigator>
   </NavigationContainer>
   );

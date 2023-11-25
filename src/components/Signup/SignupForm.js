@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Formik } from 'formik';
+import { SignupSchema } from './Validate';
 import { StyleSheet,
     ImageBackground, 
     Image,
@@ -9,6 +11,7 @@ import { StyleSheet,
     Alert,
    } from 'react-native';
    import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
   export default function SignupForm() {
     const navigation = useNavigation();
@@ -16,27 +19,22 @@ import { StyleSheet,
     const [isChecked1, setIsChecked1] = useState(false);
     const [isChecked2, setIsChecked2] = useState(false);
 
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-    const handleOnChange = (value, setter) => {
-      setter(value);
-    };
-    const handleSignup = async () => {
-      const userData = {
-        name,
-        email,
-        password,
-      };
-
+    const handleSignup = async (userData) => {
+      const dataInfo = JSON.parse(AsyncStorage.getItem('inforCustomer'));
+      let user = {
+        firstname: dataInfo.firstname,
+        lastname: dataInfo.lastname,
+        phone: dataInfo.phone,
+        email: userData.email,
+        password: userData.password
+      }
       try {
         const response = await fetch('https://6410c403da042ca131fb737e.mockapi.io/users', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(userData),
+          body: JSON.stringify(user),
         });
 
         if (response.status === 201) {
@@ -65,32 +63,71 @@ import { StyleSheet,
     };
 
     return (
-      <ImageBackground source={require('../assets/Profiles/background-profiles.png')} style={styles.imageBackground}>
+      <ImageBackground source={require('../../assets/Profiles/background-profiles.png')} style={styles.imageBackground}>
         <View style={styles.image}>
-          <Image source={require('../assets/Profiles/DIDFOOD.png')}></Image>
+          <Image source={require('../../assets/Profiles/DIDFOOD.png')}></Image>
         </View>
+        <Formik
+            initialValues={{
+              fullName: "",
+              email: "",
+              password: "",
+            }}
+            validationSchema={SignupSchema}
+            onSubmit={(values, { setSubmitting }) => {
+              setTimeout(() => {
+                handleSignup(JSON.stringify(values));
+              }, 400);
+            }}
+          >
+            {({
+         values,
+         errors,
+         touched,
+         handleChange,
+         handleBlur,
+         handleSubmit,
+         isSubmitting,
+       }) => (
         <View style={styles.form}>
           <Text style={styles.tittle}>Sign Up For Free</Text>
-          <View style={styles.textInput}>
-            <TextInput
-                style={styles.input} 
-                placeholder="Name" 
-                value={name}
-                onChangeText={text => handleOnChange(text, setName)}
-            />
-            <TextInput
-                style={styles.input} 
-                placeholder="Email" 
-                value={email}
-                onChangeText={text => handleOnChange(text, setEmail)}
-            />
-            <TextInput
-                style={styles.input} 
-                placeholder="Password" 
-                value={password}
-                onChangeText={text => handleOnChange(text, setPassword)}
-            />
-          </View>
+            <View style={styles.textInput}>
+              <TextInput
+                  style={styles.input} 
+                  name="fullName"
+                  placeholder="Full Name"
+                  value={values.fullName}
+                  onChangeText={handleChange('fullName')}
+                  onBlur={handleBlur('fullName')}
+              />
+              {errors.fullName && touched.fullName ? (
+                <Text style={{color: 'red'}}>* {errors.fullName}</Text>
+              ) : null}
+              <TextInput
+                  style={styles.input} 
+                  placeholder="Email" 
+                  type="email"
+                  name="email"
+                  onChangeText={handleChange('email')}
+                  onBlur={handleBlur('email')}
+                  value={values.email}
+              />
+              {errors.email && touched.email ? (
+                <Text style={{color: 'red'}}>* {errors.email}</Text>
+              ) : null}
+              <TextInput
+                  style={styles.input} 
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  value={values.password}
+                  onChangeText={handleChange('password')}
+                  onBlur={handleBlur('password')}
+              />
+              {errors.password && touched.password ? (
+                <Text style={{color: 'red'}}>* {errors.password}</Text>
+              ) : null}
+            </View>
           <View style={styles.container}>
             <View style={styles.group}>
                 <TouchableOpacity
@@ -115,15 +152,18 @@ import { StyleSheet,
                 <Text style={styles.nameCheckbox}>Email Me About SpecialPricing</Text>
             </View>
           </View>
-        </View>
-        <View style={{flex: 1}}>
-          <View style={styles.btn}>
-            <TouchableOpacity style={styles.btnLogin}>
-              <Text style={styles.textbtn} onPress={handleSignup}>Create Account</Text>
-            </TouchableOpacity>
-            <Text style={styles.hyperlink} onPress={() => {navigation.navigate('Login')}}>Already have an account ?</Text>
+          <View style={{flex: 1}}>
+            <View style={styles.btn}>
+              <TouchableOpacity style={styles.btnLogin}>
+                <Text style={styles.textbtn} onPress={handleSubmit}>Create Account</Text>
+              </TouchableOpacity>
+              <Text style={styles.hyperlink} onPress={() => {navigation.navigate('Login')}}>Already have an account ?</Text>
+            </View>
           </View>
         </View>
+        )}
+        </Formik>
+        
       </ImageBackground>
     )
   }

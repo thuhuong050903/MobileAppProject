@@ -9,6 +9,7 @@ import { StyleSheet,
     Alert,
    } from 'react-native'
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
   
 export default function LoginForm() {
     const navigation = useNavigation();
@@ -34,6 +35,7 @@ export default function LoginForm() {
     const handleLogin = () => {
         const user = users.find(user => user.email === email && user.password === password);
         if (user) {
+          AsyncStorage.setItem('user',JSON.stringify(user));
           Alert.alert('Success', 'Đăng nhập thành công', [
             {
               text: 'OK',
@@ -48,9 +50,9 @@ export default function LoginForm() {
     };
 
     return (
-      <ImageBackground source={require('../assets/Profiles/background-profiles.png')} style={styles.imageBackground}>
+      <ImageBackground source={require('../../assets/Profiles/background-profiles.png')} style={styles.imageBackground}>
         <View style={styles.image}>
-          <Image source={require('../assets/Profiles/DIDFOOD.png')}></Image>
+          <Image source={require('../../assets/Profiles/DIDFOOD.png')}></Image>
         </View>
         <View style={styles.form}>
           <Text style={styles.tittle}>Login To Your Account</Text>
@@ -74,11 +76,11 @@ export default function LoginForm() {
           <Text style={styles.orContinue}>Or Continue With </Text>
           <View style={styles.social}>
             <TouchableOpacity style={styles.socialButton}>
-              <Image source={require('../assets/Profiles/google-icon.png')} style={styles.icon}></Image>
+              <Image source={require('../../assets/Profiles/google-icon.png')} style={styles.icon}></Image>
               <Text style={styles.socialButtonText}>Facebook</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.socialButton}>
-              <Image source={require('../assets/Profiles/facebook-icon.png')} style={styles.icon}></Image>
+              <Image source={require('../../assets/Profiles/facebook-icon.png')} style={styles.icon}></Image>
               <Text style={styles.socialButtonText}>Google</Text>
             </TouchableOpacity>
           </View>

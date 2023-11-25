@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, Alert } from 'react-native';
-import DataCart from '../data/dataCart';
+import DataCart from '../../data/dataCart';
 import Swipeable from 'react-native-swipeable';
 
 export default function OrderCard({ onTotalChange, total }) {
+  
   const DataMenu = DataCart();
   const [itemQuantities, setItemQuantities] = useState({});
   const [menuItems, setMenuItems] = useState(DataMenu);
@@ -75,7 +76,7 @@ export default function OrderCard({ onTotalChange, total }) {
         >
           <Image
             style={{ tintColor: 'white', width: 30, height: 30 }}
-            source={require('../assets/icons/iconDelete.png')}
+            source={require('../../assets/icons/iconDelete.png')}
           />
         </TouchableOpacity>,
       ]}

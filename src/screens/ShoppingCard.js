@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import OrderCard from '../components/OrderCard'
+import OrderCard from '../components/Cart/OrderCard'
 import { Image } from 'react-native'
-import PriceCard from '../components/PriceCard'
+import PriceCard from '../components/Cart/PriceCard'
 import { useState } from 'react'
 export default function ShoppingCard() {
   const [total, setTotal] = useState(0);

@@ -1,13 +1,13 @@
 import { ImageBackground, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import BtnOrder from './BtnOrder';
+import BtnOrder from '../button/BtnOrder';
 
 export default function PriceCard({ subtotal, discount, delivery }) {
   const total = subtotal - discount + delivery;
   
   return (
     <View style={styles.detailContainer}>
-      <ImageBackground source={require('../assets/PriceInfo.png')} style={styles.img}>
+      <ImageBackground source={require('../../assets/PriceInfo.png')} style={styles.img}>
         <View>
           <View style={styles.row}>
             <Text style={styles.label}>Sub-total</Text>

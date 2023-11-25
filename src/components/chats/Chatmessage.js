@@ -62,7 +62,7 @@ export default function Message() {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <ImageBackground
-        source={require("../assets/bgChat.png")}
+        source={require("../../assets/bgChat.png")}
         style={{ flex: 1 }}
       >
         <View style={styles.container}>
@@ -70,7 +70,7 @@ export default function Message() {
             <TouchableOpacity onPress={handleback}>
               <Image
                 style={styles.vector}
-                source={require("../assets/Back.png")}
+                source={require("../../assets/Back.png")}
               ></Image>
             </TouchableOpacity>
           </View>
@@ -81,7 +81,7 @@ export default function Message() {
               <View style={styles.protofile} onPress={handleChat}>
                 <Image
                   style={styles.vector}
-                  source={require("../assets/Profile_Louis.png")}
+                  source={require("../../assets/Profile_Louis.png")}
                 ></Image>
               </View>
 
@@ -94,7 +94,7 @@ export default function Message() {
               <TouchableOpacity onPress={handleChat}>
                 <Image
                   style={styles.call}
-                  source={require("../assets/CallLogo.png")}
+                  source={require("../../assets/CallLogo.png")}
                 ></Image>
               </TouchableOpacity>
             </View>
@@ -123,7 +123,7 @@ export default function Message() {
             <TouchableOpacity onPress={handleSend}>
               <Image
                 style={styles.send}
-                source={require("../assets/IconSend.png")}
+                source={require("../../assets/IconSend.png")}
               />
             </TouchableOpacity>
           </View>

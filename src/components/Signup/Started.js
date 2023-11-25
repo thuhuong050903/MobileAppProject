@@ -12,7 +12,7 @@ import { StyleSheet,
   export default function Profile() {
     const navigation = useNavigation();
     return (
-      <ImageBackground source={require('../assets/Profiles/background-signup.png')} style={styles.imageBackground}>
+      <ImageBackground source={require('../../assets/Profiles/background-signup.png')} style={styles.imageBackground}>
         <View style={{flex: 3}}>
           
         </View>

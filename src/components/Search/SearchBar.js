@@ -52,7 +52,7 @@ const SearchBar = () => {
             <View style={styles.container}>
                 <View style={styles.search}>
                     <Image
-                        source={require('../assets/IconSearch.png')}
+                        source={require('../../assets/IconSearch.png')}
                         style={styles.icon}
                     />
                     <TextInput
@@ -65,7 +65,7 @@ const SearchBar = () => {
                 </View>
                 <TouchableOpacity style={styles.btn} onPress={handleFilterPress}>
                     <Image
-                        source={require('../assets/icons/Filter.png')} 
+                        source={require('../../assets/icons/Filter.png')} 
                         style={styles.icon} 
                     />
                 </TouchableOpacity>

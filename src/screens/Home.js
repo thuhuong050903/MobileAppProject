@@ -1,7 +1,7 @@
 import { ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import Header from '../components/Header';
-import SearchBar from '../components/SearchBar';
+import SearchBar from '../components/Search/SearchBar';
 import NearestRestaurant from '../components/NearestRestaurant';
 // import SwipeableBottomPanel from '../components/test/swipeable'
 
